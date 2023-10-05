@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\PermissionsionController;
+use App\Http\Controllers\RolController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Permission;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::middleware([
@@ -23,6 +27,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        return view('home');
+    })->name('home');
+    Route::resource('empleados' , EmpleadoController::class)->names('empleados')->middleware('auth');
+    Route::resource('roles' , RolController::class)->names('roles')->middleware('auth');
+    Route::resource('permisos' , PermissionsionController::class)->names('permisos')->middleware('auth');
 });

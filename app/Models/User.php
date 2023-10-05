@@ -9,7 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -17,12 +19,16 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'idUser';
+
     protected $fillable = [
         'name',
         'email',
@@ -58,4 +64,35 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function adminlte_image()
+    {
+        return 'https://picsum.photos/300/300';
+    }
+
+    public function adminlte_desc()
+    {
+
+
+
+
+        $roles = Auth::user()->roles->pluck('name');
+        if($roles->count() < 1){
+            return    'Sin rol asignado';
+        }
+        return   $roles[0];
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'empleados/'.Auth::user()->idUser;
+    }
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'idEmpleado');
+    }
+    //  public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class, 'users', 'id', 'id');
+    // }
 }
