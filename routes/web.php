@@ -17,19 +17,23 @@ use Spatie\Permission\Contracts\Permission;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/', function () {
         return view('home');
-    })->name('home');
+    });
+    // Route::get('/dashboard', function () {
+    //     return view('home');
+    // })->name('home');
     Route::resource('empleados' , EmpleadoController::class)->names('empleados')->middleware('auth');
     Route::resource('roles' , RolController::class)->names('roles')->middleware('auth');
     Route::resource('permisos' , PermissionsionController::class)->names('permisos')->middleware('auth');
+
+
+
 });

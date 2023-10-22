@@ -292,14 +292,24 @@ return [
     'menu' => [
         //Navbar items:
         [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true,
+            'icon-enabled' => 'fas fa-moon',
+            'icon-disabled' => 'fas fa-sun',
+            'color-enabled' => 'white',
+            'color-disabled' => 'yellow',
+
+        ],
+        [
             'header'   => 'Configuración de Cuenta',
             'classes'  => 'text-dark text-bold text-center text-uppercase',
         ],
-        // [
-        //     'type'         => 'navbar-search',
-        //     'text'         => 'search',
-        //     'topnav_right' => true,
-        // ],
+        
+        [
+            'type'         => 'navbar-search',
+            'text'         => 'search',
+            'topnav_right' => true,
+        ],
         // [
         //     'key'  => 'pages',
         //     'text' => 'Pages',
