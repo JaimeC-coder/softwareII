@@ -73,10 +73,6 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-
-
-
-
         $roles = Auth::user()->roles->pluck('name');
         if($roles->count() < 1){
             return    'Sin rol asignado';
@@ -92,8 +88,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Empleado::class, 'idEmpleado');
     }
-    //  public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class, 'users', 'id', 'id');
-    // }
+
 }

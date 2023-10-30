@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property $depnombre
  * @property $created_at
  * @property $updated_at
- *
  * @property Asistencia[] $asistencias
  * @property Empleado[] $empleados
  * @package App

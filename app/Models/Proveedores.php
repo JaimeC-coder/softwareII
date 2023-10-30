@@ -5,29 +5,41 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/*
-*
-* @property int $idProveedor
-* @property string $provdoc
-* @property string $provtelefono
-* @property string $provcorreo
-* @property string $provdireccion
-* @property string $provrazonsocial
-
-*/
+/**
+ * Class Proveedores
+ * softDeletes
+ * @property $idProveedor
+ * @property $provdoc
+ * @property $provtelefono
+ * @property $provcorreo
+ * @property $provdireccion
+ * @property $provrazonsocial
+ * @property $created_at
+ * @property $updated_at
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ *
+ * @property Compra[] $compras
+ * @property OrdenCompra[] $ordenCompras
+ */
 class Proveedores extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $table = 'proveedores';
     protected $primaryKey = 'idProveedor';
-    protected $fillable = [
-        'provdoc',
-        'provtelefono',
-        'provcorreo',
-        'provdireccion',
-        'provrazonsocial'
-    ];
+    protected $fillable = ['provdoc','provtelefono','provcorreo','provdireccion','provrazonsocial'];
+
+    public function compras()
+    {
+        return $this->hasMany(Compra::class, 'idProveedor');
+    }
+
+    public function ordenCompras()
+    {
+        return $this->hasMany(OrdenCompra::class, 'idProveedor');
+    }
+
+    
 }

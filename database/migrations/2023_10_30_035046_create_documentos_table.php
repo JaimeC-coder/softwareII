@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->bigIncrements('idDocumento');
             $table->unsignedBigInteger('idTipoDocumento');
-            $table->string('numeroDocumento');
-            $table->double('montoDocumento');
-            $table->string('simbolo',1);
+            $table->string('docnumero');
+            $table->double('docmonto');
+            $table->string('docsimbolo',1);
             $table->foreign('idTipoDocumento')->references('idTipoDocumento')->on('tipo_documentos')->onDelete('cascade');
             $table->unsignedBigInteger('documentable_id')->nullable();
             $table->string('documentable_type')->nullable();

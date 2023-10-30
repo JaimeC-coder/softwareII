@@ -6,20 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/*
-* Class TipoProducto
-* softDeletes
-*
-* @property $idTipoproducto
-* @property $tpronombre
-* @property $created_at
-* @property $updated_at
-*
-* @property Producto[] $productos
-* @package App
-* @mixin \Illuminate\Database\Eloquent\Builder
-
-*/
+/**
+ * Class TipoProducto
+ * softDeletes
+ * @property $idTipoproducto
+ * @property $tpronombre
+ * @property $created_at
+ * @property $updated_at
+ * @property Producto[] $productos
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder<
+ */
 
 class TipoProducto extends Model
 {

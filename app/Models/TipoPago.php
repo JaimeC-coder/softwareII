@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $tpagotipo
  * @property $created_at
  * @property $updated_at
- *
  * @property Ventas[] $ventas
  * @property Compra[] $compras
  * @package App

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Empleado
- *
+ * softDeletes
  * @property $idEmpleado
  * @property $empnombres
  * @property $empapellidop
@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
 class Empleado extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'empleados';
     protected $primaryKey = 'idEmpleado';
