@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SeguridadSeeder::class,
             AbastecimientoSeeder::class,
             CompraSeeder::class,
+            FinanzaSeeder::class,
 
         ]);
     }

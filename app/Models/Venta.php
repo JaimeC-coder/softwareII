@@ -12,7 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property $venfecha
  * @property $venhora
  * @property $vendescripcion
- * @property $ventotal
+ * @property $venmonto
+ * @property $venimpuesto
+ * @property $ventotalneto
+ * @property $venobservacion
+ * @property $vendocumentocliente
+ * @property $vennombrecliente
+ * @property $venestado
  * @property $idTipocomprobante
  * @property $idTipopago
  * @property $idEmpleado
@@ -35,16 +41,18 @@ class Venta extends Model
     protected $primaryKey = 'idVenta';
     protected $fillable = [
         'venfecha',
-        'vendocumentocliente',
         'venhora',
-        'venestado',
+        'vendescripcion',
         'venmonto',
         'venimpuesto',
         'ventotalneto',
         'venobservacion',
+        'vendocumentocliente',
+        'vennombrecliente',
+        'venestado',
         'idTipocomprobante',
         'idTipopago',
-        'idEmpleado'
+        'idEmpleado',
     ];
 
     public function tipoComprobante()

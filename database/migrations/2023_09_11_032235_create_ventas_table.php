@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('idVenta');
             $table->string('venfecha');
             $table->string('vendocumentocliente')->nullable();
+            $table->string('vennombrecliente')->default('cliente generico');
             $table->string('venhora');
             $table->string('venestado')->default('pagado');
             $table->string('venmonto');
