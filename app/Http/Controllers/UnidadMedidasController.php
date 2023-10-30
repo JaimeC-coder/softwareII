@@ -13,6 +13,8 @@ class UnidadMedidasController extends Controller
     public function index()
     {
         //
+        $unidadMedidas = UnidadMedidas::all();
+        return view('unidadMedidas.index', compact('unidadMedidas'));
     }
 
     /**
@@ -21,6 +23,9 @@ class UnidadMedidasController extends Controller
     public function create()
     {
         //
+        $unidadMedida = new UnidadMedidas();
+
+        return view('unidadMedidas.create', compact('unidadMedida'));
     }
 
     /**
@@ -29,6 +34,11 @@ class UnidadMedidasController extends Controller
     public function store(Request $request)
     {
         //
+        UnidadMedidas::create([
+            'umdescripcion' => $request->umdescripcion,
+        ]);
+
+        return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida creada exitosamente.');
     }
 
     /**
@@ -37,6 +47,7 @@ class UnidadMedidasController extends Controller
     public function show(UnidadMedidas $unidadMedidas)
     {
         //
+        return view('unidadMedidas.show', compact('unidadMedidas'));
     }
 
     /**
@@ -45,6 +56,7 @@ class UnidadMedidasController extends Controller
     public function edit(UnidadMedidas $unidadMedidas)
     {
         //
+        return view('unidadMedidas.edit', compact('unidadMedidas'));
     }
 
     /**
@@ -53,6 +65,11 @@ class UnidadMedidasController extends Controller
     public function update(Request $request, UnidadMedidas $unidadMedidas)
     {
         //
+        $unidadMedidas->update([
+            'umdescripcion' => $request->umdescripcion,
+        ]);
+
+        return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida actualizada exitosamente.');
     }
 
     /**
@@ -61,5 +78,8 @@ class UnidadMedidasController extends Controller
     public function destroy(UnidadMedidas $unidadMedidas)
     {
         //
+        $unidadMedidas->delete();
+
+        return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida eliminada exitosamente.');
     }
 }

@@ -13,6 +13,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
+        $productos = Producto::all();
+        return view('productos.index', compact('productos'));
     }
 
     /**
@@ -21,6 +23,10 @@ class ProductoController extends Controller
     public function create()
     {
         //
+        $producto = new Producto();
+
+        return view('productos.create', compact('producto'));
+
     }
 
     /**
@@ -29,6 +35,18 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
+        Producto::create([
+            'pronombre' => $request->pronombre,
+            'prodescripcion' => $request->prodescripcion,
+            'propreciounitario' => $request->propreciounitario,
+            'propreciocompra' => $request->propreciocompra,
+            'prostock' => $request->prostock,
+            'prostockminimo' => $request->prostockminimo,
+            'idTipoproducto' => $request->idTipoproducto,
+            'idUnidadmedida' => $request->idUnidadmedida,
+        ]);
+
+        return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
     }
 
     /**
@@ -37,6 +55,7 @@ class ProductoController extends Controller
     public function show(Producto $producto)
     {
         //
+        return view('productos.show', compact('producto'));
     }
 
     /**
@@ -45,6 +64,7 @@ class ProductoController extends Controller
     public function edit(Producto $producto)
     {
         //
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -53,6 +73,18 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         //
+        $producto->update([
+            'pronombre' => $request->pronombre,
+            'prodescripcion' => $request->prodescripcion,
+            'propreciounitario' => $request->propreciounitario,
+            'propreciocompra' => $request->propreciocompra,
+            'prostock' => $request->prostock,
+            'prostockminimo' => $request->prostockminimo,
+            'idTipoproducto' => $request->idTipoproducto,
+            'idUnidadmedida' => $request->idUnidadmedida,
+        ]);
+
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente.');
     }
 
     /**
@@ -61,5 +93,8 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //
+        $producto->delete();
+
+        return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
     }
 }

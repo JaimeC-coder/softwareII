@@ -13,6 +13,8 @@ class TipoDocumentoController extends Controller
     public function index()
     {
         //
+        $tipoDocumentos = TipoDocumento::all();
+        return view('tipoDocumentos.index', compact('tipoDocumentos'));
     }
 
     /**
@@ -21,6 +23,9 @@ class TipoDocumentoController extends Controller
     public function create()
     {
         //
+        $tipoDocumento = new TipoDocumento();
+
+        return view('tipoDocumentos.create', compact('tipoDocumento'));
     }
 
     /**
@@ -29,6 +34,11 @@ class TipoDocumentoController extends Controller
     public function store(Request $request)
     {
         //
+        TipoDocumento::create([
+            'tdocdescripcion' => $request->tdocdescripcion,
+        ]);
+
+        return redirect()->route('tipoDocumentos.index')->with('success', 'Tipo de documento creado exitosamente.');
     }
 
     /**
@@ -37,6 +47,7 @@ class TipoDocumentoController extends Controller
     public function show(TipoDocumento $tipoDocumento)
     {
         //
+        return view('tipoDocumentos.show', compact('tipoDocumento'));
     }
 
     /**
@@ -45,6 +56,8 @@ class TipoDocumentoController extends Controller
     public function edit(TipoDocumento $tipoDocumento)
     {
         //
+        return view('tipoDocumentos.edit', compact('tipoDocumento'));
+
     }
 
     /**
@@ -53,6 +66,11 @@ class TipoDocumentoController extends Controller
     public function update(Request $request, TipoDocumento $tipoDocumento)
     {
         //
+        $tipoDocumento->update([
+            'tdocdescripcion' => $request->tdocdescripcion,
+        ]);
+
+        return redirect()->route('tipoDocumentos.index')->with('success', 'Tipo de documento actualizado exitosamente.');
     }
 
     /**
@@ -61,5 +79,8 @@ class TipoDocumentoController extends Controller
     public function destroy(TipoDocumento $tipoDocumento)
     {
         //
+        $tipoDocumento->delete();
+
+        return redirect()->route('tipoDocumentos.index')->with('success', 'Tipo de documento eliminado exitosamente.');
     }
 }

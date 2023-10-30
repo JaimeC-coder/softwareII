@@ -13,6 +13,8 @@ class TipoComprobanteController extends Controller
     public function index()
     {
         //
+        $tipoComprobantes = TipoComprobante::all();
+        return view('tipoComprobantes.index', compact('tipoComprobantes'));
     }
 
     /**
@@ -21,6 +23,9 @@ class TipoComprobanteController extends Controller
     public function create()
     {
         //
+        $tipoComprobante = new TipoComprobante();
+
+        return view('tipoComprobantes.create', compact('tipoComprobante'));
     }
 
     /**
@@ -29,6 +34,11 @@ class TipoComprobanteController extends Controller
     public function store(Request $request)
     {
         //
+        TipoComprobante::create([
+            'tcompdescripcion' => $request->tcompdescripcion,
+        ]);
+
+        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante creado exitosamente.');
     }
 
     /**
@@ -37,6 +47,7 @@ class TipoComprobanteController extends Controller
     public function show(TipoComprobante $tipoComprobante)
     {
         //
+        return view('tipoComprobantes.show', compact('tipoComprobante'));
     }
 
     /**
@@ -45,6 +56,8 @@ class TipoComprobanteController extends Controller
     public function edit(TipoComprobante $tipoComprobante)
     {
         //
+        return view('tipoComprobantes.edit', compact('tipoComprobante'));
+
     }
 
     /**
@@ -53,6 +66,11 @@ class TipoComprobanteController extends Controller
     public function update(Request $request, TipoComprobante $tipoComprobante)
     {
         //
+        $tipoComprobante->update([
+            'tcompdescripcion' => $request->tcompdescripcion,
+        ]);
+
+        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante actualizado exitosamente.');
     }
 
     /**
@@ -61,5 +79,7 @@ class TipoComprobanteController extends Controller
     public function destroy(TipoComprobante $tipoComprobante)
     {
         //
+        $tipoComprobante->delete();
+        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante eliminado exitosamente.');
     }
 }

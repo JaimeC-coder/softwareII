@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Illuminate\Database\Eloquent\Builder
  *
  * @property Compra[] $compras
- * @property OrdenCompra[] $ordenCompras
  */
 class Proveedores extends Model
 {
@@ -36,10 +35,4 @@ class Proveedores extends Model
         return $this->hasMany(Compra::class, 'idProveedor');
     }
 
-    public function ordenCompras()
-    {
-        return $this->hasMany(OrdenCompra::class, 'idProveedor');
-    }
-
-    
 }
