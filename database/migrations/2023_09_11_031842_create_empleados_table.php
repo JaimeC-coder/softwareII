@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('idDepartamento')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('idUser')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamps(); $table->softDeletes();
         });
     }
 

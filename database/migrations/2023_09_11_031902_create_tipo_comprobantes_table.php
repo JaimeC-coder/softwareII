@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('idTipocomprobante');
             $table->string('tcomcomprobante');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

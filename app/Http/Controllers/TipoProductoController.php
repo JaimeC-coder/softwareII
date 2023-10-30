@@ -13,6 +13,8 @@ class TipoProductoController extends Controller
     public function index()
     {
         //
+        $tipoProductos = TipoProducto::all();
+        return view('tipoProducto.index', compact('tipoProductos'));
     }
 
     /**
@@ -21,6 +23,8 @@ class TipoProductoController extends Controller
     public function create()
     {
         //
+        $tipoProducto = new TipoProducto();
+        return view('tipoProducto.create', compact('tipoProducto'));
     }
 
     /**
@@ -29,6 +33,11 @@ class TipoProductoController extends Controller
     public function store(Request $request)
     {
         //
+        TipoProducto::create([
+            'tpronombre' => $request->tpronombre
+
+        ]);
+        return redirect()->route('tipoProducto.index')->with('success', 'Tipo de producto creado');
     }
 
     /**
@@ -37,6 +46,7 @@ class TipoProductoController extends Controller
     public function show(TipoProducto $tipoProducto)
     {
         //
+        return view('tipoProducto.show', compact('tipoProducto'));
     }
 
     /**
@@ -45,6 +55,7 @@ class TipoProductoController extends Controller
     public function edit(TipoProducto $tipoProducto)
     {
         //
+        return view('tipoProducto.edit', compact('tipoProducto'));
     }
 
     /**
@@ -53,6 +64,10 @@ class TipoProductoController extends Controller
     public function update(Request $request, TipoProducto $tipoProducto)
     {
         //
+        $tipoProducto->update([
+            'tpronombre' => $request->tpronombre
+        ]);
+        return redirect()->route('tipoProductos.index')->with('success', 'Tipo de producto actualizado');
     }
 
     /**
@@ -61,5 +76,7 @@ class TipoProductoController extends Controller
     public function destroy(TipoProducto $tipoProducto)
     {
         //
+        $tipoProducto->delete();
+        return redirect()->route('tipoProductos.index')->with('success', 'Tipo de producto eliminado');
     }
 }

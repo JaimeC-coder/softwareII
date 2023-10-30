@@ -14,113 +14,400 @@ class RolesPermisosSeeder extends Seeder
      */
     public function run(): void
     {
-      //roles para el area de abastecimineto :
+        //roles para el area de abastecimineto :
         //Super Usuarios
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'admin','tipo'=>'cargo']);
         //roles por departamento
-        $role1 = Role::create(['name' => 'Abastecimiento']);
-        $role2 = Role::create(['name' => 'Compras']);
-        $role3 = Role::create(['name' => 'Finanzas']);
-        $role4 = Role::create(['name' => 'Ventas']);
-        $role5 = Role::create(['name' => 'Adminstrar']);
-        $role6 = Role::create(['name' => 'Seguridad']);
+        $role1 = Role::create(['name' => 'Abastecimiento','tipo'=>'panel']);
+        $role2 = Role::create(['name' => 'Compras','tipo'=>'panel']);
+        $role3 = Role::create(['name' => 'Finanzas','tipo'=>'panel']);
+        $role4 = Role::create(['name' => 'Ventas','tipo'=>'panel']);
+        $role5 = Role::create(['name' => 'Adminstrar','tipo'=>'panel']);
+        $role6 = Role::create(['name' => 'Seguridad','tipo'=>'panel']);
 
         //*roles actor
-        $role7 = Role::create(['name' => 'Supervisor']);
-        $role8 = Role::create(['name' => 'Jefe Comercial']);
-        $role9 = Role::create(['name' => 'Jefe Finanzas']);
-        $role10 = Role::create(['name' => 'Gerente General']);
+        $role7 = Role::create(['name' => 'Supervisor','tipo'=>'cargo']);
+        $role8 = Role::create(['name' => 'Jefe Comercial','tipo'=>'cargo']);
+        $role9 = Role::create(['name' => 'Jefe Finanzas','tipo'=>'cargo']);
+        $role10 = Role::create(['name' => 'Gerente General','tipo'=>'cargo']);
         //roles actor de venta y finanzas
-        $role11 = Role::create(['name' => 'Contador']);
-        $role12 = Role::create(['name' => 'Vendedor']);
-        $role13 = Role::create(['name' => 'Jefe de Personal']);
+        $role11 = Role::create(['name' => 'Contador','tipo'=>'cargo']);
+        $role12 = Role::create(['name' => 'Vendedor','tipo'=>'cargo']);
+        $role13 = Role::create(['name' => 'Jefe de Personal','tipo'=>'cargo']);
         //roles actor de seguridad
-        $role14 = Role::create(['name' => 'Jefe Seguridad']);
-        $role15 = Role::create(['name' => 'Brigadista']);
-        $role16 = Role::create(['name' => 'Prevencionista']);
+        $role14 = Role::create(['name' => 'Jefe Seguridad','tipo'=>'cargo']);
+        $role15 = Role::create(['name' => 'Brigadista','tipo'=>'cargo']);
+        $role16 = Role::create(['name' => 'Prevencionista','tipo'=>'cargo']);
 
-//---------------------------------------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------------------------------------
         //permisos
-        Permission::create(['name' => 'panel.Abastecimiento'])->syncRoles([$role1, $role7, $role8, $role9, $role10, $role]);
-        Permission::create(['name' => 'panel.Compras'])->syncRoles([$role2, $role]);
-        Permission::create(['name' => 'panel.Finanzas'])->syncRoles([$role3, $role]);
-        Permission::create(['name' => 'panel.Ventas'])->syncRoles([$role4, $role]);
-        Permission::create(['name' => 'panel.Adminstrar'])->syncRoles([$role5, $role]);
-        Permission::create(['name' => 'panel.Seguridad'])->syncRoles([$role6, $role]);
+        Permission::create(
+            [
+                'name' => 'panel.Abastecimiento',
+                'description' => 'Acceso al panel de abastecimiento',
+                'tipo' => 'panel'
+            ]
+        )->syncRoles([$role1, $role7, $role8, $role9, $role10, $role]);
+        Permission::create([
+            'name' => 'panel.Compras',
+            'description' => 'Acceso al panel de compras',
+            'tipo' => 'panel'
+
+        ])->syncRoles([$role2, $role]);
+        Permission::create([
+            'name' => 'panel.Finanzas',
+            'description' => 'Acceso al panel de finanzas',
+            'tipo' => 'panel'
+        ])->syncRoles([$role3, $role]);
+        Permission::create([
+            'name' => 'panel.Ventas',
+            'description' => 'Acceso al panel de ventas',
+            'tipo' => 'panel'
+        ])->syncRoles([$role4, $role]);
+        Permission::create([
+            'name' => 'panel.Adminstrar',
+            'description' => 'Acceso al panel de administracion',
+            'tipo' => 'panel'
+        ])->syncRoles([$role5, $role]);
+        Permission::create([
+            'name' => 'panel.Seguridad',
+            'description' => 'Acceso al panel de seguridad',
+            'tipo' => 'panel'
+        ])->syncRoles([$role6, $role]);
 
         //Todo lo que puede hacer el supervisor en el area de abastecimiento OJO EL GERENTE TAMBIEN
         //* Productos:
-        Permission::create(['name' => 'productos.index'])->syncRoles([$role7, $role, $role10]);
-        Permission::create(['name' => 'productos.create'])->syncRoles([$role7, $role, $role10]);
-        Permission::create(['name' => 'productos.show'])->syncRoles([$role7, $role, $role10]);
-        Permission::create(['name' => 'productos.edit'])->syncRoles([$role7, $role, $role10]);
-        Permission::create(['name' => 'productos.destroy'])->syncRoles([$role7, $role, $role10]);
+        Permission::create([
+            'name' => 'productos.index',
+            'description' => 'Ver listado de productos',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10]);
+        Permission::create([
+            'name' => 'productos.create',
+            'description' => 'Crear producto',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10]);
+        Permission::create([
+            'name' => 'productos.show',
+            'description' => 'Ver detalle de producto',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10]);
+        Permission::create([
+            'name' => 'productos.edit',
+            'description' => 'Editar producto',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10]);
+        Permission::create([
+            'name' => 'productos.destroy',
+            'description' => 'Eliminar producto',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10]);
         //*Solicitudes:
-        Permission::create(['name' => 'solicituds.index'])->syncRoles([$role7, $role, $role10,$role9]);
-        Permission::create(['name' => 'solicituds.create'])->syncRoles([$role7, $role, $role10,$role9]);
-        Permission::create(['name' => 'solicituds.show'])->syncRoles([$role7, $role, $role10,$role9]);
-        Permission::create(['name' => 'solicituds.edit'])->syncRoles([$role7, $role, $role10,$role9]);
-        Permission::create(['name' => 'solicituds.destroy'])->syncRoles([$role7, $role, $role10,$role9]);
+        Permission::create([
+            'name' => 'solicituds.index',
+            'description' => 'Crear solicitud',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10, $role9]);
+        Permission::create([
+            'name' => 'solicituds.create',
+            'description' => 'Ver listado de solicitudes',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10, $role9]);
+        Permission::create([
+            'name' => 'solicituds.show',
+            'description' => 'Ver detalle de solicitud',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10, $role9]);
+        Permission::create([
+            'name' => 'solicituds.edit',
+            'description' => 'Editar solicitud',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10, $role9]);
+        Permission::create([
+            'name' => 'solicituds.destroy',
+            'description' => 'Eliminar solicitud',
+            'tipo' => 'crud'
+        ])->syncRoles([$role7, $role, $role10, $role9]);
         //*Ventas:
-        Permission::create(['name' => 'ventas.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'ventas.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'ventas.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'ventas.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'ventas.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'ventas.index',
+            'description' => 'Ver listado de ventas',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'ventas.create',
+            'description' => 'Crear venta',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'ventas.show',
+            'description' => 'Ver detalle de venta',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'ventas.edit',
+            'description' => 'Editar venta',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'ventas.destroy',
+            'description' => 'Eliminar venta',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
         //*Finanzas:
-        Permission::create(['name' => 'documentos-contables.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'documentos-contables.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'documentos-contables.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'documentos-contables.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'documentos-contables.destroy'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-pagos.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-pagos.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-pagos.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-pagos.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-pagos.destroy'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-comprobante-ventas.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-comprobante-ventas.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-comprobante-ventas.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-comprobante-ventas.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'tipo-comprobante-ventas.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'documentos-contables.index',
+            'description' => 'Ver listado de documentos contables',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'documentos-contables.create',
+            'description' => 'Crear documento contable',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'documentos-contables.show',
+            'description' => 'Ver detalle de documento contable',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'documentos-contables.edit',
+            'description' => 'Editar documento contable',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'documentos-contables.destroy',
+            'description' => 'Eliminar documento contable',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-pagos.index',
+            'description' => 'Ver listado de tipo de pagos',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-pagos.create',
+            'description' => 'Crear tipo de pago',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-pagos.show',
+            'description' => 'Ver detalle de tipo de pago',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-pagos.edit',
+            'description' => 'Editar tipo de pago',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-pagos.destroy',
+            'description' => 'Eliminar tipo de pago',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-comprobante.index',
+            'description' => 'Ver listado de tipo de comprobantes',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-comprobante.create',
+            'description' => 'Crear tipo de comprobante',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-comprobante.show',
+            'description' => 'Ver detalle de tipo de comprobante',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-comprobante.edit',
+            'description' => 'Editar tipo de comprobante',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'tipo-comprobante.destroy',
+            'description' => 'Eliminar tipo de comprobante',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
         //*Seguridad:
-        Permission::create(['name' => 'capacitacions.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'capacitacions.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'capacitacions.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'capacitacions.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'capacitacions.destroy'])->syncRoles([$role]);
-        Permission::create(['name' => 'departamentos.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'departamentos.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'departamentos.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'departamentos.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'departamentos.destroy'])->syncRoles([$role]);
-        Permission::create(['name' => 'empleados.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'empleados.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'empleados.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'empleados.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'empleados.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'capacitacions.index',
+            'description' => 'Ver listado de capacitaciones',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'capacitacions.create',
+            'description' => 'Crear capacitacion',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'capacitacions.show',
+            'description' => 'Ver detalle de capacitacion',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'capacitacions.edit',
+            'description' => 'Editar capacitacion',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'capacitacions.destroy',
+            'description' => 'Eliminar capacitacion',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'departamentos.index',
+            'description' => 'Ver listado de departamentos',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'departamentos.create',
+            'description' => 'Crear departamento',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'departamentos.show',
+            'description' => 'Ver detalle de departamento',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'departamentos.edit',
+            'description' => 'Editar departamento',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'departamentos.destroy',
+            'description' => 'Eliminar departamento',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'empleados.index',
+            'description' => 'Ver listado de empleados',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'empleados.create',
+            'description' => 'Crear empleado',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'empleados.show',
+            'description' => 'Ver detalle de empleado',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'empleados.edit',
+            'description' => 'Editar empleado',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'empleados.destroy',
+            'description' => 'Eliminar empleado',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
 
-        Permission::create(['name' => 'roles.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'roles.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'roles.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'roles.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'roles.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'roles.index',
+            'description' => 'Ver listado de roles',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'roles.create',
+            'description' => 'Crear rol',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'roles.show',
+            'description' => 'Ver detalle de rol',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'roles.edit',
+            'description' => 'Editar rol',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'roles.destroy',
+            'description' => 'Eliminar rol',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
 
-        Permission::create(['name' => 'permisos.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'permisos.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'permisos.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'permisos.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'permisos.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'permisos.index',
+            'description' => 'Ver listado de permisos',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'permisos.create',
+            'description' => 'Crear permiso',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'permisos.show',
+            'description' => 'Ver detalle de permiso',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'permisos.edit',
+            'description' => 'Editar permiso',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'permisos.destroy',
+            'description' => 'Eliminar permiso',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
         //*Compras:
-        Permission::create(['name' => 'orden-compras.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'orden-compras.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'orden-compras.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'orden-compras.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'orden-compras.destroy'])->syncRoles([$role]);
-        Permission::create(['name' => 'proveedores.index'])->syncRoles([$role]);
-        Permission::create(['name' => 'proveedores.create'])->syncRoles([$role]);
-        Permission::create(['name' => 'proveedores.show'])->syncRoles([$role]);
-        Permission::create(['name' => 'proveedores.edit'])->syncRoles([$role]);
-        Permission::create(['name' => 'proveedores.destroy'])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'orden-compras.index',
+            'description' => 'Ver listado de ordenes de compras',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'orden-compras.create',
+            'description' => 'Crear orden de compra',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'orden-compras.show',
+            'description' => 'Ver detalle de orden de compra',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'orden-compras.edit',
+            'description' => 'Editar orden de compra',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'orden-compras.destroy',
+            'description' => 'Eliminar orden de compra',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'proveedores.index',
+            'description' => 'Ver listado de proveedores',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'proveedores.create',
+            'description' => 'Crear proveedor',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'proveedores.show',
+            'description' => 'Ver detalle de proveedor',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'proveedores.edit',
+            'description' => 'Editar proveedor',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
+        Permission::create([
+            'name' => 'proveedores.destroy',
+            'description' => 'Eliminar proveedor',
+            'tipo' => 'crud'
+        ])->syncRoles([$role]);
     }
 }

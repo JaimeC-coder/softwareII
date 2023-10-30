@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idUnidadmedida');
             $table->foreign('idUnidadmedida')->references('idUnidadmedida')->on('unidad_medidas')->onDelete('cascade');
 
-            $table->timestamps();
+            $table->timestamps(); $table->softDeletes();
         });
     }
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('asistio', ['si', 'no', 'justifico'])->nullable();
             $table->string('justificacion')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

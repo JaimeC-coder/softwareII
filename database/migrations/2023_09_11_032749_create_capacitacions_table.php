@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('capcapacitador');
             $table->unsignedBigInteger('idDepartamento');
             $table->foreign('idDepartamento')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
-           
-            $table->timestamps();
+
+            $table->timestamps(); $table->softDeletes();
         });
     }
 

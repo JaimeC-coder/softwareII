@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
 
             RolesPermisosSeeder::class,
             SeguridadSeeder::class,
+            AbastecimientoSeeder::class,
+            CompraSeeder::class,
 
         ]);
     }

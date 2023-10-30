@@ -10,9 +10,12 @@ class TipoPagoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //tipoPagos
     public function index()
     {
         //
+        $tipoPagos=TipoPago::all();
+        return view('tipoPagos.index',compact('tipoPagos'));
     }
 
     /**
@@ -21,6 +24,9 @@ class TipoPagoController extends Controller
     public function create()
     {
         //
+        $tipoPagos = new TipoPago();
+        return view('tipoPagos.create',compact('tipoPagos'));
+
     }
 
     /**
@@ -29,6 +35,12 @@ class TipoPagoController extends Controller
     public function store(Request $request)
     {
         //
+        TipoPago::create([
+            'tpagotipo' => $request->tpagotipo,
+
+        ]);
+        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago creado exitosamente');
+
     }
 
     /**
@@ -37,6 +49,7 @@ class TipoPagoController extends Controller
     public function show(TipoPago $tipoPago)
     {
         //
+        return view('tipoPagos.show',compact('tipoPago'));
     }
 
     /**
@@ -45,6 +58,7 @@ class TipoPagoController extends Controller
     public function edit(TipoPago $tipoPago)
     {
         //
+        return view('tipoPagos.edit',compact('tipoPago'));
     }
 
     /**
@@ -53,6 +67,10 @@ class TipoPagoController extends Controller
     public function update(Request $request, TipoPago $tipoPago)
     {
         //
+        $tipoPago->update([
+            'tpagotipo' => $request->tpagotipo,
+        ]);
+        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago actualizado exitosamente');
     }
 
     /**
@@ -61,5 +79,7 @@ class TipoPagoController extends Controller
     public function destroy(TipoPago $tipoPago)
     {
         //
+        $tipoPago->delete();
+        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago eliminado exitosamente');
     }
 }

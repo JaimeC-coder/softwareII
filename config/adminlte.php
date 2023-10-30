@@ -304,7 +304,7 @@ return [
             'header'   => 'Configuración de Cuenta',
             'classes'  => 'text-dark text-bold text-center text-uppercase',
         ],
-        
+
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
@@ -356,11 +356,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Categoria',
-                    'url'  => '#',
+                    'route'  => 'tipoProductos.create',
                 ],
                 [
                     'text' => 'Listar Categorias',
-                    'url'  => '#',
+                    'route'  => 'tipoProductos.index',
                 ],
             ],
         ],
@@ -395,13 +395,28 @@ return [
             ],
         ],
 
+        [
+            'text'    => 'Proveedor',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listar Proveedor',
+                    'route'  => 'proveedores.index',
+                ],
+                [
+                    'text' => 'Crear Proveedor',
+                    'route'  => 'proveedores.create',
+                ],
+            ],
+        ],
+
 
         [
             'header' => 'Finanzas',
             'classes'  => 'text-success  text-bold text-start text-uppercase',
         ],
         [
-            'text'    => 'Compras',
+            'text'    => 'Ingresos y Egresos',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
@@ -421,12 +436,30 @@ return [
             ],
         ],
         [
-            'text'    => 'Ventas',
+            'text'    => 'Metodos de pago',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Listar Ventas',
-                    'url'  => '#',
+                    'text' => 'Listar metodod de pago',
+                    'route'  => 'tipoPagos.index',
+                ],
+                [
+                    'text' => 'Crear metodod de pago',
+                    'route'  => 'tipoPagos.create',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Tipos de pago',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listar Comprobantes',
+                    'route'  => 'comprobantes.index',
+                ],
+                [
+                    'text' => 'Crear Comprobantes',
+                    'route'  => 'comprobantes.create',
                 ],
             ],
         ],
@@ -518,6 +551,21 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Departaentos',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Crear departamento',
+                    'route'  => 'departamentos.create',
+                ],
+                [
+                    'text' => 'Listar departamentos',
+                    'route'  => 'departamentos.index',
+                ],
+            ],
+        ],
+
 
 
 

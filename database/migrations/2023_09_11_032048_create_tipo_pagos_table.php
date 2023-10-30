@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('idTipopago');
             $table->string('tpagotipo');
             $table->timestamps();
+             $table->softDeletes();
         });
     }
 

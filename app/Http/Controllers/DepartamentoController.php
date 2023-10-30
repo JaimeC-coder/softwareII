@@ -13,6 +13,8 @@ class DepartamentoController extends Controller
     public function index()
     {
         //
+        $departamentos = Departamento::all();
+        return view('departamentos.index', compact('departamentos'));
     }
 
     /**
@@ -21,6 +23,10 @@ class DepartamentoController extends Controller
     public function create()
     {
         //
+        $departamento = new Departamento();
+        return view('departamentos.create', compact('departamento'));
+
+
     }
 
     /**
@@ -29,6 +35,10 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         //
+        Departamento::create([
+            'depnombre' => $request->depnombre,
+        ]);
+        return redirect()->route('departamentos.index')->with('success', 'Departamento creado correctamente');
     }
 
     /**
@@ -37,6 +47,7 @@ class DepartamentoController extends Controller
     public function show(Departamento $departamento)
     {
         //
+        return view('departamentos.show', compact('departamento'));
     }
 
     /**
@@ -45,6 +56,7 @@ class DepartamentoController extends Controller
     public function edit(Departamento $departamento)
     {
         //
+        return view('departamentos.edit', compact('departamento'));
     }
 
     /**
@@ -53,6 +65,10 @@ class DepartamentoController extends Controller
     public function update(Request $request, Departamento $departamento)
     {
         //
+        $departamento->update([
+            'depnombre' => $request->depnombre,
+        ]);
+        return redirect()->route('departamentos.index')->with('success', 'Departamento actualizado correctamente');
     }
 
     /**
@@ -61,5 +77,8 @@ class DepartamentoController extends Controller
     public function destroy(Departamento $departamento)
     {
         //
+        $departamento->delete();
+
+        return redirect()->route('departamentos.index')->with('success', 'Departamento eliminado correctamente');
     }
 }

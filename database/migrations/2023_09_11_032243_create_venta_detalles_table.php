@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('idProducto')->references('idProducto')->on('productos')->onDelete('cascade');
             $table->string('dvcantidad');
             $table->string('dvpreciounitario');
-            $table->timestamps();
+            $table->timestamps(); $table->softDeletes();
         });
     }
 

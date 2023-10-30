@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('idTipoproducto');
             $table->string('tpronombre');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

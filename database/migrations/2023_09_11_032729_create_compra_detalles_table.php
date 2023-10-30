@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idProducto');
             $table->foreign('idProducto')->references('idProducto')->on('productos')->onDelete('cascade');
             $table->string('dcomcantidad');
-            $table->timestamps();
+            $table->timestamps(); $table->softDeletes();
         });
     }
 

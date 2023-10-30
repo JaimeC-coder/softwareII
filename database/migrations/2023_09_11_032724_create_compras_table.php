@@ -18,13 +18,17 @@ return new class extends Migration
             $table->string('orcomdescripcion')->nullable();
             $table->string('orcomtotal');
             $table->string('orcomestado');
-
+            $table->unsignedBigInteger('idTipocomprobante');
+            $table->foreign('idTipocomprobante')->references('idTipocomprobante')->on('tipo_comprobantes')->onDelete('cascade');
+            $table->unsignedBigInteger('idTipopago');
+            $table->foreign('idTipopago')->references('idTipopago')->on('tipo_pagos')->onDelete('cascade');
             $table->unsignedBigInteger('idProveedor');
             $table->foreign('idProveedor')->references('idProveedor')->on('proveedores')->onDelete('cascade');
             $table->unsignedBigInteger('idEmpleado');
             $table->foreign('idEmpleado')->references('idEmpleado')->on('empleados')->onDelete('cascade');
-            
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

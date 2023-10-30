@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('provdireccion');
             $table->string('provrazonsocial');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

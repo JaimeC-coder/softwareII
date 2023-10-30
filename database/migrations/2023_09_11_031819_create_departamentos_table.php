@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('departamentos', function (Blueprint $table) {
             $table->bigIncrements('idDepartamento');
             $table->string('depnombre');
-            $table->timestamps();
+            $table->timestamps(); $table->softDeletes();
         });
     }
 
