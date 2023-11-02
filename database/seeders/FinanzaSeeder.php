@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\EstadosFinanciero;
 use App\Models\TipoComprobante;
 use App\Models\TipoComprobanteVenta;
+use App\Models\TipoDocumento;
 use App\Models\TipoPago;
 class FinanzaSeeder extends Seeder
 {
@@ -52,6 +53,12 @@ class FinanzaSeeder extends Seeder
         TipoComprobante::create([
             'tcomcomprobante' => 'Boleta Electrónica',
         ]);
-   
+        TipoDocumento::create([
+            'tidDocumento' => 'Compra',
+        ]);
+        TipoDocumento::create([
+            'tidDocumento' => 'Venta',
+        ]);
+
     }
 }

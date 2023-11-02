@@ -342,11 +342,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Producto',
-                    'url'  => '#',
+                    'route'  => 'productos.create',
                 ],
                 [
                     'text' => 'Listar Productos',
-                    'url'  => '#',
+                    'route'  => 'productos.index',
                 ],
             ],
         ],
@@ -356,11 +356,25 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Categoria',
-                    'route'  => 'tipoProductos.create',
+                    'route'  => 'tipoproductos.create',
                 ],
                 [
                     'text' => 'Listar Categorias',
-                    'route'  => 'tipoProductos.index',
+                    'route'  => 'tipoproductos.index',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Unidades de Medida',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Crear unidad de medida',
+                    'route'  => 'unidadmedidas.create',
+                ],
+                [
+                    'text' => 'Listar unidades de medida',
+                    'route'  => 'unidadmedidas.index',
                 ],
             ],
         ],
@@ -370,8 +384,8 @@ return [
             'submenu' => [
 
                 [
-                    'text' => 'Listar Productos',
-                    'url'  => '#',
+                    'text' => 'Solicitudes de Productos',
+                    'route'  => 'default',
                 ],
             ],
         ],
@@ -390,7 +404,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Listar Productos',
-                    'url'  => '#',
+                    'route' => 'default',
                 ],
             ],
         ],
@@ -409,8 +423,20 @@ return [
                 ],
             ],
         ],
-
-
+        [
+            'text'    => 'Compras',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listar Compras',
+                    'route'  => 'compras.index',
+                ],
+                [
+                    'text' => 'Crear Compras',
+                    'route'  => 'compras.create',
+                ],
+            ],
+        ],
         [
             'header' => 'Finanzas',
             'classes'  => 'text-success  text-bold text-start text-uppercase',
@@ -420,8 +446,23 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Listar Compras',
-                    'url'  => '#',
+                    'text' => 'Listar Ingresos y Egresos',
+                    'route' => 'documentos.index',
+                ],
+            ],
+        ],
+
+        [
+            'text'    => 'documentos contables',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listar Documentos',
+                    'route'  => 'tipodocumentos.index',
+                ],
+                [
+                    'text' => 'Crear Documentos',
+                    'route'  => 'tipodocumentos.create',
                 ],
             ],
         ],
@@ -431,7 +472,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Listar Solicitudes',
-                    'url'  => '#',
+                    'route' => 'default',
                 ],
             ],
         ],
@@ -441,11 +482,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Listar metodod de pago',
-                    'route'  => 'tipoPagos.index',
+                    'route'  => 'tipopagos.index',
                 ],
                 [
                     'text' => 'Crear metodod de pago',
-                    'route'  => 'tipoPagos.create',
+                    'route'  => 'tipopagos.create',
                 ],
             ],
         ],
@@ -455,11 +496,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Listar Comprobantes',
-                    'route'  => 'comprobantes.index',
+                    'route'  => 'tipocomprobantes.index',
                 ],
                 [
                     'text' => 'Crear Comprobantes',
-                    'route'  => 'comprobantes.create',
+                    'route'  => 'tipocomprobantes.create',
                 ],
             ],
         ],
@@ -474,11 +515,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Venta',
-                    'url'  => '#',
+                    'route'  => 'ventas.create',
                 ],
                 [
                     'text' => 'Listar Ventas',
-                    'url'  => '#',
+                    'route'  => 'ventas.index',
                 ],
             ],
         ],
@@ -509,7 +550,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Rol',
-                     'route'  => 'roles.create',
+                    'route'  => 'roles.create',
                 ],
                 [
                     'text' => 'Listar Roles',
@@ -543,11 +584,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear Capacitacion',
-                    'url'  => '#',
+                    'route'  => 'capacitaciones.create',
                 ],
                 [
                     'text' => 'Listar Capacitaciones',
-                    'url'  => '#',
+                    'route'  => 'capacitaciones.index',
                 ],
             ],
         ],

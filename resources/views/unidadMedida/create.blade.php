@@ -1,9 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Tipo de Pagos')
+@section('title', 'Unidad de Medida')
+
+
 
 @section('content_header')
-    <h1>Editar Tipo de Pagos</h1>
+    <h1>Crear Unidad de Medida</h1>
 @stop
 
 @section('content')
@@ -16,13 +18,13 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">{{ __('Editar') }} Tipo de Pagos</span>
+                    <span class="card-title">{{ __('Create') }} Tipo de Comprobante</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('tipopagos.update', $tipoPago ) }}" role="form" enctype="multipart/form-data">
-                        {{ method_field('PATCH') }}
+                    <form method="POST" action="{{ route('unidadmedidas.store') }}"  role="form" enctype="multipart/form-data">
                         @csrf
-                        @include('tipoPago.form')
+
+                        @include('unidadMedida.form')
 
                     </form>
                 </div>
@@ -45,3 +47,8 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
+
+
+
+
+

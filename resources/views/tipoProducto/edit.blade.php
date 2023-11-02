@@ -21,9 +21,9 @@
                     <span class="card-title">{{ __('Editar') }} Tipo de Productos</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('tipoProductos.update',$tipoProducto) }}"  role="form" enctype="multipart/form-data">
-                        @csrf
-
+                    <form method="POST" action="{{ route('tipoproductos.update', $tipoProducto ) }}" role="form" enctype="multipart/form-data">
+                        {{ method_field('PATCH') }}
+@csrf
                         @include('tipoProducto.form')
 
                     </form>

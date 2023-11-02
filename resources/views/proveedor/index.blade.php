@@ -55,7 +55,7 @@
                                             <td>{{ $item->provtelefono }}</td>
                                             <td>{{ $item->provcorreo }}</td>
                                             <td>{{ $item->provdireccion }}</td>
-                                            <td>{{ $item->proprovrazonsocialvdoc }}</td>
+                                            <td>{{ $item->provrazonsocial }}</td>
                                             <td>
                                                 <form action="{{ route('proveedores.destroy', $item) }}" method="POST">
                                                     <a href="{{ route('proveedores.edit', $item) }}"

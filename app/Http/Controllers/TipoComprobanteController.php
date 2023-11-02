@@ -35,7 +35,7 @@ class TipoComprobanteController extends Controller
     {
         //
         TipoComprobante::create([
-            'tcompdescripcion' => $request->tcompdescripcion,
+            'tcomcomprobante' => $request->tcomcomprobante
         ]);
 
         return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante creado exitosamente.');
@@ -67,7 +67,7 @@ class TipoComprobanteController extends Controller
     {
         //
         $tipoComprobante->update([
-            'tcompdescripcion' => $request->tcompdescripcion,
+            'tcomcomprobante' => $request->tcomcomprobante,
         ]);
 
         return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante actualizado exitosamente.');

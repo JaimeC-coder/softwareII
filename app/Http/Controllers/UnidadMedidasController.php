@@ -14,7 +14,7 @@ class UnidadMedidasController extends Controller
     {
         //
         $unidadMedidas = UnidadMedidas::all();
-        return view('unidadMedidas.index', compact('unidadMedidas'));
+        return view('unidadMedida.index', compact('unidadMedidas'));
     }
 
     /**
@@ -25,7 +25,7 @@ class UnidadMedidasController extends Controller
         //
         $unidadMedida = new UnidadMedidas();
 
-        return view('unidadMedidas.create', compact('unidadMedida'));
+        return view('unidadMedida.create', compact('unidadMedida'));
     }
 
     /**
@@ -35,7 +35,7 @@ class UnidadMedidasController extends Controller
     {
         //
         UnidadMedidas::create([
-            'umdescripcion' => $request->umdescripcion,
+            'umednombre' => $request->umednombre,
         ]);
 
         return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida creada exitosamente.');
@@ -44,29 +44,30 @@ class UnidadMedidasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UnidadMedidas $unidadMedidas)
+    public function show(UnidadMedidas $unidadMedida)
     {
         //
-        return view('unidadMedidas.show', compact('unidadMedidas'));
+
+        return view('unidadMedida.show', compact('unidadMedida'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UnidadMedidas $unidadMedidas)
+    public function edit(UnidadMedidas $unidadMedida)
     {
         //
-        return view('unidadMedidas.edit', compact('unidadMedidas'));
+        return view('unidadMedida.edit', compact('unidadMedida'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UnidadMedidas $unidadMedidas)
+    public function update(Request $request, UnidadMedidas $unidadMedida)
     {
         //
-        $unidadMedidas->update([
-            'umdescripcion' => $request->umdescripcion,
+        $unidadMedida->update([
+            'umednombre' => $request->umednombre,
         ]);
 
         return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida actualizada exitosamente.');
@@ -75,10 +76,10 @@ class UnidadMedidasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UnidadMedidas $unidadMedidas)
+    public function destroy(UnidadMedidas $unidadMedida)
     {
         //
-        $unidadMedidas->delete();
+        $unidadMedida->delete();
 
         return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida eliminada exitosamente.');
     }

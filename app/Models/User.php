@@ -84,9 +84,10 @@ class User extends Authenticatable
     {
         return 'empleados/'.Auth::user()->idUser;
     }
+    //relacion uno a uno
     public function empleado()
     {
-        return $this->belongsTo(Empleado::class, 'idEmpleado');
+        return $this->belongsTo(Empleado::class, 'idUser');
     }
 
 }

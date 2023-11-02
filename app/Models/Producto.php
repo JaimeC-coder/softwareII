@@ -59,7 +59,7 @@ class Producto extends Model
 
     public function unidadMedida()
     {
-        return $this->belongsTo(UnidadMedida::class, 'idUnidadmedida');
+        return $this->belongsTo(UnidadMedidas::class, 'idUnidadmedida');
     }
 
 }

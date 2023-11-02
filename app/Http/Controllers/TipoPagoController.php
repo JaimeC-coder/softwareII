@@ -15,7 +15,7 @@ class TipoPagoController extends Controller
     {
         //
         $tipoPagos=TipoPago::all();
-        return view('tipoPagos.index',compact('tipoPagos'));
+        return view('tipoPago.index',compact('tipoPagos'));
     }
 
     /**
@@ -24,8 +24,8 @@ class TipoPagoController extends Controller
     public function create()
     {
         //
-        $tipoPagos = new TipoPago();
-        return view('tipoPagos.create',compact('tipoPagos'));
+        $tipoPago = new TipoPago();
+        return view('tipoPago.create',compact('tipoPago'));
 
     }
 
@@ -49,7 +49,7 @@ class TipoPagoController extends Controller
     public function show(TipoPago $tipoPago)
     {
         //
-        return view('tipoPagos.show',compact('tipoPago'));
+        return view('tipoPago.show',compact('tipoPago'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TipoPagoController extends Controller
     public function edit(TipoPago $tipoPago)
     {
         //
-        return view('tipoPagos.edit',compact('tipoPago'));
+        return view('tipoPago.edit',compact('tipoPago'));
     }
 
     /**

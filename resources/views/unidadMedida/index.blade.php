@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Permisos')
+@section('title', 'Tipo de Productos')
 
 @section('content_header')
-    <h1>Lista de Pagos</h1>
+    <h1>Lista de Unidades de Medida</h1>
 @stop
 
 @section('content')
@@ -17,14 +17,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Pagos') }}
+                                {{ __('Unidades de Medida') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('tipopagos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Nuevo Tipo de Pago') }}
-                                </a>
-
+                                <a href="{{ route('unidadmedidas.create') }}" class="btn btn-primary mb-3">CREAR</a>
                               </div>
                         </div>
                     </div>
@@ -40,25 +37,24 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>#</th>
-                                        <th>Tipo de Pago</th>
+                                        <th>Unidad</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($tipoPagos as $item)
+                                    @foreach ($unidadMedidas as $item)
                                         <tr>
-                                            <td>{{ $item->idTipopago }}</td>
-                                            <td>{{ $item->tpagotipo }}</td>
+                                            <td>{{ $item->idUnidadmedida}}</td>
+                                            <td>{{ $item->umednombre}}</td>
                                             <td>
-                                                <form action="{{route('tipopagos.destroy',$item)}}" method="POST">
-                                                    <a href="{{route('tipopagos.edit',$item)}}" class="btn btn-info">Editar</a>
-                                                    <a href="{{route('tipopagos.show',$item)}}" class="btn btn-info">Ver</a>
+                                                <form action="{{route('unidadmedidas.destroy',$item)}}" method="POST">
+                                                    <a href="{{route('unidadmedidas.edit',$item)}}" class="btn btn-info">Editar</a>
+                                                    <a href="{{route('unidadmedidas.show',$item)}}" class="btn btn-info">Ver</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Borrar</button>
                                                 </form>
-
                                             </td>
 
                                         </tr>

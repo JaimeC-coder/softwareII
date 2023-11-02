@@ -48,9 +48,9 @@
                                             <td>{{ $item->idTipoproducto }}</td>
                                             <td>{{ $item->tpronombre }}</td>
                                             <td>
-                                                <form action="{{route('tipoProductos.destroy',$item)}}" method="POST">
-                                                    <a href="{{route('tipoProductos.edit',$item)}}" class="btn btn-info">Editar</a>
-                                                    <a href="{{route('tipoProductos.show',$item)}}" class="btn btn-info">Ver</a>
+                                                <form action="{{route('tipoproductos.destroy',$item)}}" method="POST">
+                                                    <a href="{{route('tipoproductos.edit',$item)}}" class="btn btn-info">Editar</a>
+                                                    <a href="{{route('tipoproductos.show',$item)}}" class="btn btn-info">Ver</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Borrar</button>

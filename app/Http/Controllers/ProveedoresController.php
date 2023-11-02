@@ -33,7 +33,13 @@ class ProveedoresController extends Controller
     public function store(Request $request)
     {
         //
-        $proveedor = Proveedores::create($request->all());
+        $proveedor = Proveedores::create([
+            'provdoc' => $request->provdoc,
+            'provtelefono' => $request->provtelefono,
+            'provcorreo' => $request->provcorreo,
+            'provdireccion' => $request->provdireccion,
+            'provrazonsocial' => $request->provrazonsocial
+        ]);
         return redirect()->route('proveedores.index')->with('success', 'Proveedor creado exitosamente');
     }
 
@@ -63,10 +69,11 @@ class ProveedoresController extends Controller
         //
         $proveedores->update(
             [
-                'nombre' => $request->nombre,
-                'direccion' => $request->direccion,
-                'telefono' => $request->telefono,
-                'email' => $request->email,
+                'provdoc' => $request->provdoc,
+                'provtelefono' => $request->provtelefono,
+                'provcorreo' => $request->provcorreo,
+                'provdireccion' => $request->provdireccion,
+                'provrazonsocial' => $request->provrazonsocial
             ]
         );
         return redirect()->route('proveedores.index')->with('success', 'Proveedor actualizado exitosamente');

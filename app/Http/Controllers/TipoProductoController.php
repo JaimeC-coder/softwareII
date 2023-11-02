@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class TipoProductoController extends Controller
 {
@@ -37,7 +38,7 @@ class TipoProductoController extends Controller
             'tpronombre' => $request->tpronombre
 
         ]);
-        return redirect()->route('tipoProducto.index')->with('success', 'Tipo de producto creado');
+        return redirect()->route('tipoProductos.index')->with('success', 'Tipo de producto creado');
     }
 
     /**
@@ -64,6 +65,7 @@ class TipoProductoController extends Controller
     public function update(Request $request, TipoProducto $tipoProducto)
     {
         //
+       
         $tipoProducto->update([
             'tpronombre' => $request->tpronombre
         ]);

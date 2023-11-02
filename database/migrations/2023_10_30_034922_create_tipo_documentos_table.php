@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('idTipoDocumento');
             $table->string('tidDocumento');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

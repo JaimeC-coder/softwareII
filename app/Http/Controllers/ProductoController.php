@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\TipoProducto;
+use App\Models\UnidadMedidas;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -24,8 +26,10 @@ class ProductoController extends Controller
     {
         //
         $producto = new Producto();
+        $tipoProducto = TipoProducto::pluck('tpronombre', 'idTipoproducto');
+        $unidadMedida = UnidadMedidas::pluck('umednombre', 'idUnidadmedida');
 
-        return view('productos.create', compact('producto'));
+        return view('productos.create', compact('producto', 'tipoProducto', 'unidadMedida'));
 
     }
 
@@ -64,7 +68,9 @@ class ProductoController extends Controller
     public function edit(Producto $producto)
     {
         //
-        return view('productos.edit', compact('producto'));
+        $tipoProducto = TipoProducto::pluck('tpronombre', 'idTipoproducto');
+        $unidadMedida = UnidadMedidas::pluck('umednombre', 'idUnidadmedida');
+        return view('productos.edit', compact('producto', 'tipoProducto', 'unidadMedida'));
     }
 
     /**

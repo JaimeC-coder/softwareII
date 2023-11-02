@@ -22,6 +22,7 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('departamentos.update',$departamento) }}"  role="form" enctype="multipart/form-data">
+                      {{ method_field('PATCH') }}-
                         @csrf
 
                         @include('departamentos.form')

@@ -14,7 +14,8 @@ class TipoDocumentoController extends Controller
     {
         //
         $tipoDocumentos = TipoDocumento::all();
-        return view('tipoDocumentos.index', compact('tipoDocumentos'));
+
+        return view('tipoDocumento.index', compact('tipoDocumentos'));
     }
 
     /**
