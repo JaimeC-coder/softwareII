@@ -57,7 +57,12 @@ Route::middleware([
     Route::resource('compras', CompraController::class)->names('compras')->middleware('auth');
     Route::resource('documentos', DocumentoController::class)->names('documentos')->middleware('auth');
     Route::resource('tipodocumentos', TipoDocumentoController::class)->names('tipodocumentos')->middleware('auth');
-    Route::resource('capacitaciones', CapacitacionController::class)->names('capacitaciones')->middleware('auth');
+    Route::resource('capacitaciones', CapacitacionController::class)->parameters([
+        'capacitaciones' => 'capacitacion'
+    ])->names('capacitaciones')->middleware('auth');
+
+    Route::get('capacitaciones/{capacitacion}/asist', [CapacitacionController::class, 'asistencia'])->name('capacitaciones.asist');
+    Route::POST('capacitaciones/guardar', [CapacitacionController::class, 'guardar'])->name('capacitaciones.guardar');
     //Faltan
     Route::resource('asistencias', AsistenciaController::class)->names('asistencias')->middleware('auth');
     Route::get('default', function () {

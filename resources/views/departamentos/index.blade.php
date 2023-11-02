@@ -1,7 +1,3 @@
-
-
-
-
 @extends('adminlte::page')
 
 @section('title', 'Departamentos')

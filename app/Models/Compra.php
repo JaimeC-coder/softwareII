@@ -36,7 +36,7 @@ class Compra extends Model
 
     protected $table = 'compras';
     protected $primaryKey = 'idOrdencompra';
-    protected $fillable = ['orcomfecha','orcomhora','orcomdescripcion','orcomtotal','idTipocomprobante','idTipopago','idProveedor','idEmpleado'];
+    protected $fillable = ['orcomfecha','orcomhora','orcomdescripcion','orcomestado','orcomtotal','idTipocomprobante','idTipopago','idProveedor','idEmpleado'];
 
     public function tipoComprobante()
     {
@@ -50,7 +50,7 @@ class Compra extends Model
 
     public function proveedor()
     {
-        return $this->belongsTo(Proveedor::class, 'idProveedor');
+        return $this->belongsTo(Proveedores::class, 'idProveedor');
     }
 
     public function empleado()

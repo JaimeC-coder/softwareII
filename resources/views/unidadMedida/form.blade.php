@@ -2,7 +2,7 @@
     <div class="box-body">
         <div class="form-group">
             {{ Form::label('umednombre','Unidad de Medida') }}
-            {{ Form::text('umednombre', $unidadMedida->umednombre, ['class' => 'form-control' . ($errors->has('umednombre') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Comprobante']) }}
+            {{ Form::text('umednombre', $unidadmedida->umednombre, ['class' => 'form-control' . ($errors->has('umednombre') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Comprobante']) }}
             {!! $errors->first('umednombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

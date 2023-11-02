@@ -21,7 +21,7 @@
                     <span class="card-title">{{ __('Editar') }} Tipo de Comprobante</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('unidadmedidas.update', $unidadMedida ) }}" role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('unidadmedidas.update', $unidadmedida ) }}" role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf
                         @include('unidadMedida.form')

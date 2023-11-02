@@ -13,6 +13,8 @@ class DocumentoController extends Controller
     public function index()
     {
         //
+        $documentos = Documento::all();
+        return view('documentos.index', compact('documentos'));
     }
 
     /**

@@ -23,9 +23,9 @@ class UnidadMedidasController extends Controller
     public function create()
     {
         //
-        $unidadMedida = new UnidadMedidas();
+        $unidadmedida = new UnidadMedidas();
 
-        return view('unidadMedida.create', compact('unidadMedida'));
+        return view('unidadMedida.create', compact('unidadmedida'));
     }
 
     /**
@@ -44,29 +44,29 @@ class UnidadMedidasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UnidadMedidas $unidadMedida)
+    public function show(UnidadMedidas $unidadmedida)
     {
         //
 
-        return view('unidadMedida.show', compact('unidadMedida'));
+        return view('unidadMedida.show', compact('unidadmedida'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UnidadMedidas $unidadMedida)
+    public function edit(UnidadMedidas $unidadmedida)
     {
         //
-        return view('unidadMedida.edit', compact('unidadMedida'));
+        return view('unidadMedida.edit', compact('unidadmedida'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UnidadMedidas $unidadMedida)
+    public function update(Request $request, UnidadMedidas $unidadmedida)
     {
         //
-        $unidadMedida->update([
+        $unidadmedida->update([
             'umednombre' => $request->umednombre,
         ]);
 
@@ -76,10 +76,10 @@ class UnidadMedidasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UnidadMedidas $unidadMedida)
+    public function destroy(UnidadMedidas $unidadmedida)
     {
         //
-        $unidadMedida->delete();
+        $unidadmedida->delete();
 
         return redirect()->route('unidadMedidas.index')->with('success', 'Unidad de medida eliminada exitosamente.');
     }

@@ -83,13 +83,13 @@
                                                     <a class="btn btn-sm btn-primary " href="{{ route('ventas.show', $venta) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     {{-- @endcan
                                                     @can('ventas.edit') --}}
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    {{-- <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a> --}}
                                                     {{-- @endcan
                                                     @can('ventas.delete') --}}
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    {{-- <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button> --}}
                                                     {{-- @endcan --}}
                                                 </form>
                                             </td>
