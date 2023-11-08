@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Ventas')
+@section('title', 'Compras')
 
 
 
@@ -18,7 +18,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Venta</span>
+                        <span class="card-title">{{ __('Create') }} Compra</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('compras.store') }}" role="form"

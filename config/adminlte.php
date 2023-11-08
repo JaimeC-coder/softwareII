@@ -310,20 +310,7 @@ return [
             'text'         => 'search',
             'topnav_right' => true,
         ],
-        // [
-        //     'key'  => 'pages',
-        //     'text' => 'Pages',
-        //     'url'  => 'admin/pages',
-        //     'icon' => 'far fa-fw fa-file',
-        // ],
 
-
-        // [
-        //     'text'     => 'Important Link',
-        //     'url'      => 'important/link',
-        //     'icon'     => 'fas fa-fw fa-exclamation-triangle',
-        //     'classes'  => 'text-danger text-uppercase',
-        // ],
 
         //datos del usuario y que cierre sesion
 
@@ -335,6 +322,10 @@ return [
             'header' => 'Abastecimiento',
             'classes'  => 'text-primary  text-bold text-start text-uppercase',
 
+        ],
+        [
+            'text' => 'Dashboard',
+            'route'  => 'dasboard.abastecimiento'
         ],
         [
             'text'    => 'Productos',
@@ -378,26 +369,26 @@ return [
                 ],
             ],
         ],
-        [
-            'text'    => 'Solicitudes',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+        // [
+        //     'text'    => 'Solicitudes',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
 
-                [
-                    'text' => 'Solicitudes de Productos',
-                    'route'  => 'default',
-                ],
-            ],
-        ],
-
-
-
-
-
+        //         [
+        //             'text' => 'Solicitudes de Productos',
+        //             'route'  => 'default',
+        //         ],
+        //     ],
+        // ],
         [
             'header' => 'Compras',
             'classes'  => 'text-secondary  text-bold text-start text-uppercase',
         ],
+        [
+            'text' => 'Dashboard',
+            'route'  => 'dasboard.compras'
+        ],
+
         [
             'text'    => 'Solicitudes Aprobadas',
             'icon'    => 'fas fa-fw fa-share',
@@ -441,6 +432,12 @@ return [
             'header' => 'Finanzas',
             'classes'  => 'text-success  text-bold text-start text-uppercase',
         ],
+
+        [
+            'text' => 'Dashboard',
+            'route'  => 'dasboard.finanzas'
+        ],
+
         [
             'text'    => 'Ingresos y Egresos',
             'icon'    => 'fas fa-fw fa-share',
@@ -466,16 +463,16 @@ return [
                 ],
             ],
         ],
-        [
-            'text'    => 'Solicitudes',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Listar Solicitudes',
-                    'route' => 'default',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Solicitudes',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Listar Solicitudes',
+        //             'route' => 'default',
+        //         ],
+        //     ],
+        // ],
         [
             'text'    => 'Metodos de pago',
             'icon'    => 'fas fa-fw fa-share',
@@ -509,6 +506,11 @@ return [
             'header' => 'Ventas',
             'classes'  => 'text-yellow text-bold text-start text-uppercase',
         ],
+        [
+            'text' => 'Dashboard',
+            'route'  => 'dasboard.ventas'
+        ],
+
         [
             'text'    => 'Ventas',
             'icon'    => 'fas fa-fw fa-share',
@@ -577,6 +579,10 @@ return [
         [
             'header' => 'Seguridad',
             'classes'  => 'text-info  text-bold text-start text-uppercase',
+        ],
+        [
+            'text' => 'Dashboard',
+            'route'  => 'dasboard.capacitaciones'
         ],
         [
             'text'    => 'Capacitaciones',
@@ -649,21 +655,27 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                ],
+       
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
@@ -684,11 +696,11 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],

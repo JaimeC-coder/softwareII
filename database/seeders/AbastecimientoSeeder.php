@@ -27,7 +27,7 @@ class AbastecimientoSeeder extends Seeder
         UnidadMedidas::create(['umednombre' => 'Caja']);
         Producto::create([
             'pronombre' => 'Gasolina 95',
-            'prodescripcion' => 'Gasolina para gente pudiente',
+            'prodescripcion' => 'Gasolina premium',
             'propreciounitario' => 20.80,
             'prostock' => 99,
             'prostockminimo' => 100,
@@ -37,7 +37,7 @@ class AbastecimientoSeeder extends Seeder
         ]);
         Producto::create([
             'pronombre' => 'Gasolina 90',
-            'prodescripcion' => 'Gasolina para motos y autos',
+            'prodescripcion' => 'Gasolina super',
             'propreciounitario' => 19.80,
             'prostock' => 1000000,
             'prostockminimo' => 100,
@@ -48,7 +48,7 @@ class AbastecimientoSeeder extends Seeder
         ]);
         Producto::create([
             'pronombre' => 'Gasolina 84',
-            'prodescripcion' => 'Gasolina para pobres',
+            'prodescripcion' => 'Gasolina normal',
             'propreciounitario' => 17.80,
             'prostock' => 1000000,
             'prostockminimo' => 100,

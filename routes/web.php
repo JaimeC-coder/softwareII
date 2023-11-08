@@ -16,7 +16,6 @@ use App\Http\Controllers\UnidadMedidasController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\TipoDocumentoController;
-use App\Models\TipoDocumento;
 use Illuminate\Support\Facades\Route;
 
 
@@ -68,4 +67,22 @@ Route::middleware([
     Route::get('default', function () {
         return view('default');
     })->name('default')->middleware('auth');
+});
+
+Route::prefix('dasboard')->group(function () {
+    Route::get('abastecimiento', [ProductoController::class, 'dasboard'])->name('dasboard.abastecimiento');
+    Route::prefix('ventas')->group(function () {
+        Route::get('/', [VentaController::class, 'dasboard'])->name('dasboard.ventas');
+        Route::get('graficaventas', [VentaController::class, 'ventas'])->name('ventas.graficaventas');
+    });
+    Route::prefix('compras')->group(function () {
+        Route::get('/', [CompraController::class, 'dasboard'])->name('dasboard.compras');
+        Route::get('graficacompras', [CompraController::class, 'compras'])->name('compras.graficacompras');
+    });
+    Route::prefix('finanzas')->group(function () {
+        Route::get('/', [DocumentoController::class, 'dasboard'])->name('dasboard.finanzas');
+        Route::get('graficafinanzas', [VentaController::class, 'finanzas'])->name('finanzas.graficafinanzas');
+    });
+
+    Route::get('capacitaciones', [CapacitacionController::class, 'dasboard'])->name('dasboard.capacitaciones');
 });

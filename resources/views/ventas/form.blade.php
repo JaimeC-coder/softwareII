@@ -1,10 +1,33 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('vendocumentocliente', 'Documento del Cliente') }}
-            {{ Form::text('vendocumentocliente', $venta->vendocumentocliente, ['class' => 'form-control' . ($errors->has('vendocumentocliente') ? ' is-invalid' : ''), 'placeholder' => 'Documento del Cliente']) }}
-            {!! $errors->first('vendocumentocliente', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ Form::label('vendocumentocliente', 'Documento del Cliente') }}
+                    {{ Form::text('vendocumentocliente', $venta->vendocumentocliente, ['class' => 'form-control' . ($errors->has('vendocumentocliente') ? ' is-invalid' : ''), 'placeholder' => 'Documento del Cliente']) }}
+                    {!! $errors->first('vendocumentocliente', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ Form::label('venfecha', 'Fecha') }}
+                            {{ Form::date('venfecha', $venta->venfecha, ['class' => 'form-control' . ($errors->has('venfecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+                            {!! $errors->first('venfecha', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ Form::label('venhora', 'Hora') }}
+                            {{ Form::time('venhora', $venta->venhora, ['class' => 'form-control' . ($errors->has('venhora') ? ' is-invalid' : ''), 'placeholder' => 'Hora']) }}
+                            {!! $errors->first('venhora', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         <div class="row">
             <div class="col-md-8">
@@ -93,22 +116,22 @@
         </div>
         <div class="form-group">
             {{ Form::label('venobservacion', 'Observacion') }}
-            {{ Form::text('venobservacion', $venta->venobservacion, ['class' => 'form-control' . ($errors->has('venobservacion') ? ' is-invalid' : ''), 'placeholder' => 'Observacion',]) }}
+            {{ Form::text('venobservacion', $venta->venobservacion, ['class' => 'form-control' . ($errors->has('venobservacion') ? ' is-invalid' : ''), 'placeholder' => 'Observacion']) }}
             {!! $errors->first('venobservacion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('venmonto', 'Monto') }}
-            {{ Form::text('venmonto', $venta->venmonto, ['class' => 'form-control' . ($errors->has('venmonto') ? ' is-invalid' : ''), 'placeholder' => 'Monto','readonly']) }}
+            {{ Form::text('venmonto', $venta->venmonto, ['class' => 'form-control' . ($errors->has('venmonto') ? ' is-invalid' : ''), 'placeholder' => 'Monto', 'readonly']) }}
             {!! $errors->first('venmonto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('venimpuesto', 'Impuestos(18%)') }}
-            {{ Form::text('venimpuesto', $venta->venimpuesto, ['class' => 'form-control' . ($errors->has('venimpuesto') ? ' is-invalid' : ''), 'placeholder' => 'Impuestos','readonly ']) }}
+            {{ Form::text('venimpuesto', $venta->venimpuesto, ['class' => 'form-control' . ($errors->has('venimpuesto') ? ' is-invalid' : ''), 'placeholder' => 'Impuestos', 'readonly ']) }}
             {!! $errors->first('venimpuesto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('ventotalneto', 'Total Neto') }}
-            {{ Form::text('ventotalneto', $venta->ventotalneto, ['class' => 'form-control' . ($errors->has('ventotalneto') ? ' is-invalid' : ''), 'placeholder' => 'Total' ,'readonly' ]) }}
+            {{ Form::text('ventotalneto', $venta->ventotalneto, ['class' => 'form-control' . ($errors->has('ventotalneto') ? ' is-invalid' : ''), 'placeholder' => 'Total', 'readonly']) }}
             {!! $errors->first('ventotalneto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="box-footer mt20">
@@ -116,4 +139,3 @@
         </div>
     </div>
 </div>
-

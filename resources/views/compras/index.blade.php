@@ -39,7 +39,6 @@
                                         <th>#</th>
                                         <th>Fecha y Hora</th>
                                         <th>Descripcion</th>
-
                                         <th>Total </th>
                                         <th>Tipo Comprobante</th>
                                         <th>Tipo Pago</th>
@@ -53,7 +52,7 @@
                                     @foreach ($compras as $item)
                                         <tr>
 
-                                            <td>{{ $item->iditem }}</td>
+                                            <td>{{ $item->idOrdencompra }}</td>
                                             <td>{{ $item->orcomfecha }} {{ $item->orcomhora }}</td>
                                             <td>{{ $item->orcomdescripcion }}</td>
                                             <td>{{ $item->orcomtotal }}</td>

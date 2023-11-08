@@ -1,19 +1,41 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('idProveedor') }}
-            {{ Form::select('idProveedor', $proveedor, null, ['class' => 'form-control' . ($errors->has('idProveedor') ? ' is-invalid' : ''), 'placeholder' => 'seleccione Proveedor']) }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ Form::label('idProveedor') }}
+                    {{ Form::select('idProveedor', $proveedor, null, ['class' => 'form-control' . ($errors->has('idProveedor') ? ' is-invalid' : ''), 'placeholder' => 'seleccione Proveedor']) }}
 
-            {!! $errors->first('idProveedor', '<div class="invalid-feedback">:message</div>') !!}
+                    {!! $errors->first('idProveedor', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ Form::label('orcomfecha', 'Fecha') }}
+                            {{ Form::date('orcomfecha', $compra->orcomfecha, ['class' => 'form-control' . ($errors->has('orcomfecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+                            {!! $errors->first('orcomfecha', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ Form::label('orcomhora', 'Hora') }}
+                            {{ Form::time('orcomhora', $compra->orcomhora, ['class' => 'form-control' . ($errors->has('orcomhora') ? ' is-invalid' : ''), 'placeholder' => 'Hora']) }}
+                            {!! $errors->first('orcomhora', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            {{ Form::label('idTipocomprobante','tipo de Comprobante') }}
+            {{ Form::label('idTipocomprobante', 'tipo de Comprobante') }}
             {{ Form::select('idTipocomprobante', $tipoComprobante, null, ['class' => 'form-control' . ($errors->has('idTipocomprobante') ? ' is-invalid' : ''), 'placeholder' => 'seleccione Tipo de comprobante']) }}
 
             {!! $errors->first('idTipocomprobante', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idTipopago','tipo de pago') }}
+            {{ Form::label('idTipopago', 'tipo de pago') }}
             {{ Form::select('idTipopago', $tipoPago, null, ['class' => 'form-control' . ($errors->has('idTipopago') ? ' is-invalid' : ''), 'placeholder' => 'seleccione Tipo de pago']) }}
 
             {!! $errors->first('idTipopago', '<div class="invalid-feedback">:message</div>') !!}

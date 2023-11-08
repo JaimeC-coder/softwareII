@@ -103,4 +103,24 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
     }
+    public function dasboard()
+    {
+        $productos = Producto::all();
+        return view('dashboard.abastecimiento', compact('productos'));
+    }
+
+    // public function productosxcategoria(){
+    //     //cuentame la cantidad de productos que hay en estock y separamelos por categoria y su unidad de medida
+    //     $productos = Producto::;
+
+    // }
+
+    //productos comparacion de productos con su estock minimo
+    public function productosStockMinimo()
+    {
+        $productos = Producto::all();
+        return view('productos.stockminimo', compact('productos'));
+    }
+
+
 }
