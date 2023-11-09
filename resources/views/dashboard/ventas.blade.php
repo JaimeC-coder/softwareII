@@ -110,78 +110,23 @@
 
     <script>
         $(document).ready(function() {
-            var DataTable = $('#example').DataTable({
-                footerCallback: function(row, data, start, end, display) {
-                    let api = this.api();
-
-                    // Remove the formatting to get integer data for summation
-                    let intVal = function(i) {
-                        return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '') * 1 :
-                            typeof i === 'number' ?
-                            i :
-                            0;
-                    };
-
-                    // Total over all pages
-                    total = api
-                        .column(9)
-                        .data()
-                        .reduce((a, b) => intVal(a) + intVal(b), 0);
-
-                    // Total over this page
-                    pageTotal = api
-                        .column(9, {
-                            page: 'current'
-                        })
-                        .data()
-                        .reduce((a, b) => intVal(a) + intVal(b), 0);
-
-                    // Update footer
-                    api.column(9).footer().innerHTML =
-                        'S/' + total;
-                },
-                dom: 'Bfrtip',
-
-                buttons: [{
-                        extend: 'excel',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: ':not(:last-child)' // Excluir la última columna
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'PDF',
-                        exportOptions: {
-                            columns: ':not(:last-child)' // Excluir la última columna
-                        }
-                    }
-                ],
-
-                //pasar los botones a la derecha
-
-                "lengthMenu": [
-                    [5, 10, 50, -1],
-                    [5, 10, 50, "All"]
-                ],
-                "paging": false,
-                "bLengthChange": false,
-                "searching": false,
-                "language": {
-                    "zeroRecords": "No se encontraron resultados en su busqueda"
-                }
-
-            });
+            let currentDate = new Date();
 
             var minEl = $('#min');
             var maxEl = $('#max');
 
+            if (minEl.val() == '') {
+                minEl.val(currentDate.toISOString().substr(0, 10));
+            }
+            if (maxEl.val() == '') {
+                maxEl.val(currentDate.toISOString().substr(0, 10));
+            }
+
             // Custom range filtering function
             DataTable.ext.search.push(function(settings, data, dataIndex) {
-                var minDate = new Date(minEl.value);
-                var maxDate = new Date(maxEl.value);
-                var dateValue = new Date(data[3]); // A // use data for the age column
+                var minDate = new Date(minEl.val());
+                var maxDate = new Date(maxEl.val());
+                var dateValue = new Date(data[1]); // A // use data for the age column
 
                 if (
                     isNaN(minDate) && isNaN(maxDate) ||
@@ -195,7 +140,7 @@
                 return false;
             });
 
-            var table = $('#example').DataTable();
+            var table = $('#example').DataTable({});
 
             // Changes to the inputs will trigger a redraw to update the table
             minEl.on('input', function() {

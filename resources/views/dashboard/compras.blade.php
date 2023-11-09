@@ -157,79 +157,22 @@
 
     <script>
         $(document).ready(function() {
-            var DataTable = $('#example').DataTable({
-                footerCallback: function(row, data, start, end, display) {
-                    let api = this.api();
 
-                    // Remove the formatting to get integer data for summation
-                    let intVal = function(i) {
-                        return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '') * 1 :
-                            typeof i === 'number' ?
-                            i :
-                            0;
-                    };
+            let currentDate = new Date();
 
-                    // Total over all pages
-                    total = api
-                        .column(7)
-                        .data()
-                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+            let initDate = $('#initDate');
+            let endDate = $('#endDate');
 
-                    // Total over this page
-                    pageTotal = api
-                        .column(7, {
-                            page: 'current'
-                        })
-                        .data()
-                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+            if (initDate.val() === '') initDate.val(currentDate.toISOString().substr(0, 10));
+            if (endDate.val() === '') endDate.val(currentDate.toISOString().substr(0, 10));
 
-                    // Update footer
-                    api.column(7).footer().innerHTML =
-                        'S/' + total;
-                },
-                dom: 'Bfrtip',
 
-                buttons: [{
-                        extend: 'excel',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: ':not(:last-child)' // Excluir la última columna
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'PDF',
-                        exportOptions: {
-                            columns: ':not(:last-child)' // Excluir la última columna
-                        }
-                    }
-                ],
-
-                //pasar los botones a la derecha
-
-                "lengthMenu": [
-                    [5, 10, 50, -1],
-                    [5, 10, 50, "All"]
-                ],
-                "paging": false,
-                "bLengthChange": false,
-                "searching": false,
-                "language": {
-                    "zeroRecords": "No se encontraron resultados en su busqueda"
-                }
-
-            });
-
-            var minEl = $('#min');
-            var maxEl = $('#max');
 
             // Custom range filtering function
             DataTable.ext.search.push(function(settings, data, dataIndex) {
-                var minDate = new Date(minEl.value);
-                var maxDate = new Date(maxEl.value);
-                var dateValue = new Date(data[3]); // A // use data for the age column
-
+                var minDate = new Date(initDate.val());
+                var maxDate = new Date(endDate.val());
+                var dateValue = new Date(data[1]); // A // use data for the age column
                 if (
                     isNaN(minDate) && isNaN(maxDate) ||
                     isNaN(minDate) && dateValue <= maxDate ||
@@ -242,13 +185,49 @@
                 return false;
             });
 
-            var table = $('#example').DataTable();
+            var table = $('#example').DataTable(
+            //     {
+            //     order: [0, 'desc'],
+            //     responsive: true,
+            //     dom: 'lBfrtip',
+            //     buttons: [{
+            //             extend: 'excelHtml5',
+            //             footer: true,
+            //             title: 'Archivo',
+            //             filename: 'Export_File',
+            //             text: '<button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>',
+            //             titleAttr: 'Exportar a Excel',
+            //         },
+            //         {
+            //             extend: 'pdfHtml5',
+            //             footer: true,
+            //             title: 'Archivo PDF',
+            //             filename: 'Export_File_pdf',
+            //             text: '<button class="btn btn-danger"><i class="bi bi-filetype-pdf"></i></button>',
+            //             titleAttr: 'Exportar a PDF',
+            //         },
+            //         {
+            //             extend: 'copyHtml5',
+            //             download: 'open',
+            //             footer: true,
+            //             title: 'Archivo',
+            //             filename: 'Reporte',
+            //             text: '<button class="btn btn-primary"><i class="bi bi-clipboard"></i></button>',
+            //             titleAttr: 'Copiar al portapapeles',
+            //         }
+            //     ],
+            //     "language": {
+            //         "url": "{{ asset('assets/template/extensions/datatables.net-bs5/js/Spanish.json') }}"
+            //     },
+            //     "lengthMenu": [5, 10, 25, 50, "Todos"]
+            // }
+            );
 
             // Changes to the inputs will trigger a redraw to update the table
-            minEl.on('input', function() {
+            initDate.on('input', function() {
                 table.draw();
             });
-            maxEl.on('input', function() {
+            endDate.on('input', function() {
                 table.draw();
             });
         });

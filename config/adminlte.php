@@ -657,17 +657,17 @@ return [
         'Datatables' => [
             'active' => true,
             'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-                ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                // ],
                 [
                     'type' => 'js',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
-       
+
                 [
                     'type' => 'js',
                     'asset' => true,
@@ -678,6 +678,50 @@ return [
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                // // Buttons
+                // //https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js',
+                // ],
+                // // https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js',
+                // ],
+                // // https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js',
+                // ],
+                // // https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js',
+                // ],
+                // // https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js',
+                // ],
+                // // https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js',
+                // ],
+                // // https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+                // ],
+
             ],
         ],
         'Select2' => [

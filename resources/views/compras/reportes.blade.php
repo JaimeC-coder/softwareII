@@ -1,22 +1,18 @@
 <div class="card col-12">
     <div class="card-header">
         <div class="d-flex row">
-            <div class="col-6">
+            <div class="col-3">
                 <h3>Fecha inicio</h3>
-                <input type="date" name="" id="min" class="form-control">
+                <input type="date" name="" id="initDate" class="form-control">
             </div>
-            <div class="col-6">
-            <h3>Fecha Final</h3>
-            <input type="date" name="" id="max" class="form-control">
+            <div class="col-3">
+                <h3>Fecha Final</h3>
+                <input type="date" name="" id="endDate" class="form-control">
             </div>
-
-
-
         </div>
     </div>
-    <div class="card-body col-12">
-        <table class="d-bloc table table-striped table-inverse table-responsive" id="example">
-
+    <div class="card-body">
+        <table class="table" id="example">
             <thead class="thead-inverse">
                 <tr>
                     <th>#</th>
@@ -27,15 +23,13 @@
                     <th>Proveedor</th>
                     <th>Empleado</th>
                     <th>Total </th>
-
-
                 </tr>
             </thead>
             <tbody>
                 @foreach ($compra as $item)
                     <tr>
 
-                        <td>{{ $item->idOrdencompra  }}</td>
+                        <td>{{ $item->idOrdencompra }}</td>
                         <td>{{ $item->orcomfecha }} {{ $item->orcomhora }}</td>
                         <td>{{ $item->orcomdescripcion }}</td>
                         <td>{{ $item->tipoComprobante->tcomcomprobante }}</td>
@@ -56,5 +50,4 @@
             </tfoot>
         </table>
     </div>
-
 </div>
