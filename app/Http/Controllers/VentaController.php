@@ -229,7 +229,7 @@ class VentaController extends Controller
                     $join->on('meses.nombre', '=', DB::raw('DATE_FORMAT(ventas.venfecha, "%M")'));
                 }
             )
-            ->where('meses.mes', '<=', 11)
+            ->where('meses.mes', '<=', date('m'))
             ->groupBy('meses.nombre')
             ->orderByRaw('MIN(meses.mes)') // Ordenar por el mínimo valor de mes
             ->get();

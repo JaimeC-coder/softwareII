@@ -128,53 +128,97 @@ class DocumentoController extends Controller
 
     public function dasboard()
     {
-        $venta = Venta::all();
-        return view('dashboard.ventas', compact('venta'));
+        $documentos = Documento::all();
+        return view('dashboard.finansas', compact('documentos'));
     }
 
 
 
 
-    public function todo()
+    public function finanzas()
     {
-        $monthNames = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-
-        $currentMonth = now()->month;
-
-        $monthlyData = DB::table(DB::raw('ventas AS v, compras AS c'))
-            ->select(
-                DB::raw('MONTH(NOW()) AS mes'),
-                DB::raw('IFNULL(SUM(v.cantidad), 0) AS cantidad_ventas'),
-                DB::raw('IFNULL(SUM(c.cantidad), 0) AS cantidad_compras')
+        $mesesventas = DB::table('ventas')
+            ->selectRaw('meses.nombre AS mes, COUNT(ventas.idVenta) AS cantidad')
+            ->rightJoin(
+                DB::raw('(
+            SELECT 1 AS mes, "January" AS nombre
+            UNION SELECT 2, "February"
+            UNION SELECT 3, "March"
+            UNION SELECT 4, "April"
+            UNION SELECT 5, "May"
+            UNION SELECT 6, "June"
+            UNION SELECT 7, "July"
+            UNION SELECT 8, "August"
+            UNION SELECT 9, "September"
+            UNION SELECT 10, "October"
+            UNION SELECT 11, "November"
+            UNION SELECT 12, "December"
+        ) meses'),
+                function ($join) {
+                    $join->on('meses.nombre', '=', DB::raw('DATE_FORMAT(ventas.venfecha, "%M")'));
+                }
             )
-            ->where(DB::raw('MONTH(v.venfecha)'), '<=', $currentMonth)
-            ->where(DB::raw('MONTH(c.orcomfecha)'), '<=', $currentMonth)
-            ->groupBy('mes')
-            ->orderBy('mes')
+            ->where('meses.mes', '<=', date('m'))
+            ->groupBy('meses.nombre')
+            ->orderByRaw('MIN(meses.mes)') // Ordenar por el mínimo valor de mes
             ->get();
 
-        $mergedData = collect($monthNames)->map(function ($month, $index) use ($monthlyData) {
-            $data = $monthlyData->firstWhere('mes', $index + 1);
-            return [
-                'mes' => $month,
-                'cantidad_ventas' => $data ? $data->cantidad_ventas : 0,
-                'cantidad_compras' => $data ? $data->cantidad_compras : 0,
-            ];
-        });
 
-        return $mergedData;
+        $mesescompras = DB::table('compras')
+            ->selectRaw('meses.nombre AS mes, COUNT(compras.idOrdencompra) AS cantidad')
+            ->rightJoin(
+                DB::raw('(
+                SELECT 1 AS mes, "January" AS nombre
+                UNION SELECT 2, "February"
+                UNION SELECT 3, "March"
+                UNION SELECT 4, "April"
+                UNION SELECT 5, "May"
+                UNION SELECT 6, "June"
+                UNION SELECT 7, "July"
+                UNION SELECT 8, "August"
+                UNION SELECT 9, "September"
+                UNION SELECT 10, "October"
+                UNION SELECT 11, "November"
+                UNION SELECT 12, "December"
+            ) meses'),
+                function ($join) {
+                    $join->on('meses.nombre', '=', DB::raw('DATE_FORMAT(compras.orcomfecha, "%M")'));
+                }
+            )
+            ->where('meses.mes', '<=', date('m'))
+            ->groupBy('meses.nombre')
+            ->orderByRaw('MIN(meses.mes)') // Ordenar por el mínimo valor de mes
+            ->get();
+
+
+        $respuesta = [
+            'labels' => $mesesventas->pluck('mes'),
+            'dataset' => [
+                [
+                    'label' => 'Ventas',
+                    'data' => $mesesventas->pluck('cantidad'),
+                    'fill' => false,
+                    'borderColor' => '#4bc0c0',
+                    'tension' => 0.1,
+                ],
+                [
+                    'label' => 'Compras',
+                    'data' => $mesescompras->pluck('cantidad'),
+                    'fill' => false,
+                    'borderColor' => '#565656',
+                    'tension' => 0.1,
+                ],
+            ]
+        ];
+
+        return response()->json($respuesta);
     }
 
- /**
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Documento $documento)
     {
         //
     }
-
-
 }

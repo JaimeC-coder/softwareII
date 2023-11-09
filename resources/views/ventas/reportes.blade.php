@@ -71,12 +71,37 @@
                         <td colspan="9">
                             <p style="text-align: end;"> TOTAL : </p>
                         </td>
-                        <td id="total "> 0</td>
+                        <td>
+                            @if ($item->vendocumentocliente)
+                                {{ $item->vendocumentocliente }}
+                            @else
+                                -----
+                            @endif
+                        </td>
+                        <td>{{ $item->venestado }}</td>
+                        <td>
+                            @if ($item->venobservacion)
+                                {{ $item->venobservacion }}
+                            @else
+                                -----
+                            @endif
+                        </td>
+                        <td>{{ $item->tipoComprobante->tcomcomprobante }}</td>
+                        <td>{{ $item->tipoPago->tpagotipo }}</td>
+                        <td>{{ $item->empleado->user->name }}</td>
+                        <td>{{ $item->ventotalneto }}</td>
                     </tr>
-                </tfoot>
-            </table>
-        </div>
-
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="9">
+                        <p style="text-align: end;"> TOTAL : </p>
+                    </td>
+                    <td id="total "> 0</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 
 </div>
