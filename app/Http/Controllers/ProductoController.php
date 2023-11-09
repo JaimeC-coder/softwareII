@@ -6,6 +6,7 @@ use App\Models\Producto;
 use App\Models\TipoProducto;
 use App\Models\UnidadMedidas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -103,11 +104,6 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
     }
-    public function dasboard()
-    {
-        $productos = Producto::all();
-        return view('dashboard.abastecimiento', compact('productos'));
-    }
 
     // public function productosxcategoria(){
     //     //cuentame la cantidad de productos que hay en estock y separamelos por categoria y su unidad de medida
@@ -123,4 +119,40 @@ class ProductoController extends Controller
     }
 
 
+
+    public function dasboard()
+    {
+        $productos = Producto::all();
+        return view('dashboard.abastecimiento', compact('productos'));
+    }
+
+    public function ventas()
+    {
+        $productosPorCategoria = DB::table('productos')
+        ->join('tipo_productos', 'productos.idTipoproducto', '=', 'tipo_productos.idTipoproducto')
+        ->select('tipo_productos.tpronombre as categoria', DB::raw('COUNT(productos.idProducto) as cantidad_productos'))
+        ->groupBy('tipo_productos.tpronombre')
+        ->get();
+
+        $labels = [];
+        $data = [];
+
+        foreach ($productosPorCategoria as $mes) {
+            $labels[] = $mes->categoria;
+            $data[] = $mes->cantidad_productos;
+        }
+
+
+        $response = [
+            'labels' => $labels,
+            'label' => 'Cantidad de productos ',
+            'data' => $data,
+            'fill' => false,
+            'borderColor' => '#4bc0c0',
+            'tension' => 0.1,
+
+        ];
+
+        return response()->json($response);
+    }
 }
