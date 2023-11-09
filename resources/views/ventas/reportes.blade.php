@@ -63,6 +63,7 @@
                         <td>{{ $item->tipoPago->tpagotipo }}</td>
                         <td>{{ $item->empleado->user->name }}</td>
                         <td>{{ $item->ventotalneto }}</td>
+                    </tr>
                 @endforeach
             </tbody>
             <tfoot>

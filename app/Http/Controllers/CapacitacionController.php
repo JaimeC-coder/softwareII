@@ -129,22 +129,16 @@ class CapacitacionController extends Controller
                 ->with('success', 'Capacitacion no disponible');
         }
 
-    //     $asistencia = $capacitacion->asistencias;
-    //  if ($capacitacion->solicitud->solestado == 'pendiente') {
-    //     return redirect()->route('capacitacions.index')
-    //     ->with('success', 'Capacitacion no esta aprobada');
-    //  } else {
-    //     if ($capacitacion->capfechainicio >= date('Y-m-d') || $capacitacion->capfechafin >= date('Y-m-d')) {
-    //         return view('asistencia.edit', compact('asistencia', 'capacitacion'));
-    //     } else {
-    //         return redirect()->route('capacitacions.index')
-    //             ->with('success', 'Capacitacion no disponible');
-    //     }
-    //  }
 
 
-        // return $asistencia;
 
+
+    }
+
+    public function dasboard()
+    {
+        $capacitaciones = Capacitacion::all();
+        return view('dashboard.finansas', compact('capacitaciones'));
     }
     public function guardar(Request $request)
     {
@@ -160,4 +154,68 @@ class CapacitacionController extends Controller
         return redirect()->route('capacitaciones.index')
             ->with('success', 'Capacitacion updated successfully');
     }
+
+    public function seguridad()
+    {
+      $asistencias  = DB::table('asistencias')
+      ->selectRaw('meses.nombre AS mes,
+                   COALESCE(SUM(CASE WHEN asistio = "si" AND justificacion IS NOT NULL THEN 1 ELSE 0 END), 0) AS asistencias,
+                   COALESCE(SUM(CASE WHEN asistio = "no" AND justificacion IS NOT NULL THEN 1 ELSE 0 END), 0) AS no_asistencias,
+                   COALESCE(SUM(CASE WHEN justificacion IS NOT NULL THEN 1 ELSE 0 END), 0) AS justificaciones')
+      ->rightJoin(
+          DB::raw('(
+              SELECT 1 AS mes, "January" AS nombre
+              UNION SELECT 2, "February"
+              UNION SELECT 3, "March"
+              UNION SELECT 4, "April"
+              UNION SELECT 5, "May"
+              UNION SELECT 6, "June"
+              UNION SELECT 7, "July"
+              UNION SELECT 8, "August"
+              UNION SELECT 9, "September"
+              UNION SELECT 10, "October"
+              UNION SELECT 11, "November"
+              UNION SELECT 12, "December"
+          ) meses'),
+          function ($join) {
+              $join->on('meses.nombre', '=', DB::raw('DATE_FORMAT(asistencias.created_at, "%M")'));
+          }
+      )
+      ->where('meses.mes', '<=', date('m'))
+      ->groupBy('meses.nombre')
+      ->orderByRaw('MIN(meses.mes)')
+      ->get();
+
+
+
+        $respuesta = [
+            'labels' => $asistencias->pluck('mes'),
+            'dataset' => [
+                [
+                    'label' => 'Asistencias',
+                    'data' => $asistencias->pluck('asistencias'),
+                    'fill' => false,
+                    'borderColor' => '#4bc0c0',
+                    'tension' => 0.1,
+                ],
+                [
+                    'label' => 'No Asistencias',
+                    'data' => $asistencias->pluck('no_asistencias'),
+                    'fill' => false,
+                    'borderColor' => '#565656',
+                    'tension' => 0.1,
+                ],
+                [
+                    'label' => 'Justificaciones',
+                    'data' => $asistencias->pluck('justificaciones'),
+                    'fill' => false,
+                    'borderColor' => '#265156',
+                    'tension' => 0.1,
+                ],
+            ]
+        ];
+
+        return response()->json($respuesta);
+    }
+
 }

@@ -70,7 +70,10 @@ Route::middleware([
 });
 
 Route::prefix('dasboard')->group(function () {
-    Route::get('abastecimiento', [ProductoController::class, 'dasboard'])->name('dasboard.abastecimiento');
+    Route::prefix('abastecimiento')->group(function () {
+        Route::get('/', [ProductoController::class, 'dasboard'])->name('dasboard.abastecimiento');
+        Route::get('graficaabastecimiento', [ProductoController::class, 'abastecimiento'])->name('abastecimiento.graficaabastecimiento');
+    });
     Route::prefix('ventas')->group(function () {
         Route::get('/', [VentaController::class, 'dasboard'])->name('dasboard.ventas');
         Route::get('graficaventas', [VentaController::class, 'ventas'])->name('ventas.graficaventas');
@@ -81,8 +84,11 @@ Route::prefix('dasboard')->group(function () {
     });
     Route::prefix('finanzas')->group(function () {
         Route::get('/', [DocumentoController::class, 'dasboard'])->name('dasboard.finanzas');
-        Route::get('graficafinanzas', [VentaController::class, 'finanzas'])->name('finanzas.graficafinanzas');
+        Route::get('graficafinanzas', [DocumentoController::class, 'finanzas'])->name('finanzas.graficafinanzas');
+    });
+    Route::prefix('seguridad')->group(function () {
+        Route::get('/', [CapacitacionController::class, 'dasboard'])->name('dasboard.seguridad');
+        Route::get('graficaseguridad', [CapacitacionController::class, 'seguridad'])->name('seguridad.graficaseguridad');
     });
 
-    Route::get('capacitaciones', [CapacitacionController::class, 'dasboard'])->name('dasboard.capacitaciones');
 });
