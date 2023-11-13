@@ -33,9 +33,10 @@ class VentaController extends Controller
     {
         //
         $venta = new Venta();
-        $productos = Producto::all();
+        $productos = Producto::whereNotNull('propreciounitario')->select('idProducto', 'pronombre', 'propreciounitario', 'prostock', 'idUnidadmedida')->get();
         $comprobante =  TipoPago::pluck('tpagotipo', 'idTipopago');
         $pago = TipoComprobante::pluck('tcomcomprobante', 'idTipocomprobante');
+
         return view('ventas.create', compact('venta', 'productos', 'comprobante', 'pago'));
     }
 
@@ -56,7 +57,7 @@ class VentaController extends Controller
                     'venmonto' => $request->venmonto,
                     'venimpuesto' => $request->venimpuesto,
                     'ventotalneto' => $request->ventotalneto,
-                    'venobservacion' => $request->venobservacion,
+                    'venobservacion' => $request->venobservacion == null ? 'Sin observación' : $request->venobservacion,
                     'idTipocomprobante' => $request->idTipocomprobante,
                     'idTipopago' => $request->idTipopago,
                     'idEmpleado' => Auth()->user()->empleado->idEmpleado,

@@ -13,17 +13,15 @@
             <li class="nav-item">
                 <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Finanzas</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Finanzas</a>
-            </li>
+
         </ul>
     </div>
     <div class="card-body">
-        <div class="d-none" id="graficaVentas">
+        <div  id="graficaVentas">
             <canvas id="myChart"></canvas>
         </div>
         <div class="d-none row" id="reportesVentas">
-            @include('documentos.reportes')
+            @include('capacitaciones.reportes')
         </div>
 
 

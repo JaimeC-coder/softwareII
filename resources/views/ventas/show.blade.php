@@ -1,10 +1,6 @@
-
-
-
-
 @extends('adminlte::page')
 
-@section('title', 'Unidad de Medida')
+@section('title', 'Detalle de Venta')
 
 @section('content_header')
     <h1>Informacion de Venta</h1>
@@ -46,36 +42,56 @@
                     </div>
                     <div class="form-group">
                         <strong>Monto:</strong>
-                        {{ $venta->venmonto }}
+                        S/. {{ $venta->venmonto }}
                     </div>
                     <div class="form-group">
                         <strong>Inpuesto:</strong>
-                        {{ $venta->venimpuesto }}
+                       S/. {{ $venta->venimpuesto }}
                     </div>
                     <div class="form-group">
                         <strong>Total neto:</strong>
-                        {{ $venta->ventotalneto }}
+                       S/. {{ $venta->ventotalneto }}
                     </div>
                     <div class="form-group">
                         <strong>Observacion:</strong>
-                      @if ($venta->venobservacion != null){{ $venta->venobservacion }} @else -- @endif
+                      {{ $venta->venobservacion }}
                     </div>
                     <div class="form-group">
                         <strong>Tipo de comprobante:</strong>
-                        {{ $venta->idTipocomprobante }}
+                        {{ $venta->tipoComprobante->tcomcomprobante }}
                     </div>
                     <div class="form-group">
                         <strong>Tipo de pago:</strong>
-                        {{ $venta->idTipopago }}
+                        {{ $venta->tipoPago->tpagotipo }}
                     </div>
                     <div class="form-group">
                         <strong>Empleado:</strong>
-                        {{ $venta->idEmpleado }}
+                        {{ $venta->empleado->user->name }}
                     </div>
+
                     <div class="form-group">
-                        <strong>Documento:</strong><br>
-                        <iframe src="{{ Storage::url($venta->docontable->dconurl) }}" style="width:80%; height:700px;" frameborder="0" download=false ></iframe>
+                        <strong>Producto Comprado:</strong>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($detalleventa as $detalleVenta)
+                                    <tr>
+                                        <td>{{ $detalleVenta->producto->pronombre }}</td>
+                                        <td>{{ $detalleVenta->dvcantidad }} {{$detalleVenta->producto->unidadMedida->umednombre}} </td>
+                                        <td>S/.{{ $detalleVenta->dvpreciounitario }}</td>
+                                        <td>S/.{{ $detalleVenta->dvcantidad * $detalleVenta->dvpreciounitario}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                     </div>
+
                 </div>
 
             </div>

@@ -128,17 +128,11 @@ class CapacitacionController extends Controller
             return redirect()->route('capacitaciones.index')
                 ->with('success', 'Capacitacion no disponible');
         }
-
-
-
-
-
     }
-
     public function dasboard()
     {
         $capacitaciones = Capacitacion::all();
-        return view('dashboard.finansas', compact('capacitaciones'));
+        return view('dashboard.seguridad', compact('capacitaciones'));
     }
     public function guardar(Request $request)
     {

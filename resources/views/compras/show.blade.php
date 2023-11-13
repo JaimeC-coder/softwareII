@@ -49,16 +49,45 @@
                     </div>
                     <div class="form-group">
                         <strong>Proveedor:</strong>
-                        {{ $ordenCompra->Proveedore->provrazonsocial }}
+                        {{ $ordenCompra->proveedor->provrazonsocial }}
                     </div>
                     <div class="form-group">
                         <strong>Empleado:</strong>
-                        {{ $ordenCompra->Empleado->User->usunombre }}
+                        {{ $ordenCompra->empleado->user->name }}
                     </div>
                     <div class="form-group">
+                        <strong>Producto Comprados :</strong>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                            @foreach ($detalleCompra as $item)
+                                <tr>
+                                    @php
+                                        $subtotal = $item->dcomcantidad * $item->producto->propreciocompra;
+                                    @endphp
+                                    <td>{{ $item->producto->pronombre }}</td>
+                                    <td>{{ $item->dcomcantidad  }}</td>
+                                    <td>{{ $item->producto->propreciocompra }}</td>
+
+                                    <td>{{   $subtotal }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total Final </td>
+                                    <td> {{$nuevototal =+ $subtotal }}</td>
+                            @endforeach
+
+                        </table>
+
+
+                    </div>
+                    {{-- <div class="form-group">
                         <strong>Documento:</strong><br>
                         <iframe src="{{ Storage::url($ordenCompra->docontable->dconurl) }}" style="width:80%; height:700px;" frameborder="0" download=false ></iframe>
-                    </div>
+                    </div> --}}
 
                 </div>
 

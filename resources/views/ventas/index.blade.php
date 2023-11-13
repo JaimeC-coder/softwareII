@@ -78,9 +78,10 @@
                                             <td>{{ $venta->empleado->user->name }}</td>
 
                                             <td>
+                                                <a class="btn btn-sm btn-danger" href="{{route('ventas.pdf', $venta)}}"><i class="fas fa-cloud-download-alt"></i></a>
                                                 <form action="{{ route('ventas.destroy', $venta) }}" method="POST">
                                                     {{-- @can('ventas.show') --}}
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('ventas.show', $venta) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('ventas.show', $venta) }}"><i class="fa fa-fw fa-eye"></i></a>
                                                     {{-- @endcan
                                                     @can('ventas.edit') --}}
                                                     {{-- <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a> --}}

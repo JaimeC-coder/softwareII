@@ -582,7 +582,7 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'route'  => 'dasboard.capacitaciones'
+            'route'  => 'dasboard.seguridad'
         ],
         [
             'text'    => 'Capacitaciones',

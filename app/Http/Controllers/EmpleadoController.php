@@ -79,7 +79,7 @@ class EmpleadoController extends Controller
         $departamentos = Departamento::pluck('depnombre', 'idDepartamento');
         $roles = Role::all();
         $user = User::find($empleado->idEmpleado);
-        return view('empleado.edit', compact('empleado', 'departamentos', 'roles', 'user'));
+        return view('empleados.edit', compact('empleado', 'departamentos', 'roles', 'user'));
     }
 
     /**
@@ -91,7 +91,7 @@ class EmpleadoController extends Controller
          $empleado->user->update([
             'name' => $request->empnombres." ". $request->empapellidop,
             'email' => $request->usuemail,
-            'password' =>Hash::make($request->usucontra),
+            'password' =>($request->usucontra == "Ingrese nueva contraseña" or $request->usucontra == "" ) ? $empleado->user->password : Hash::make($request->usucontra),
          ]);
          //actualizar los roles
             $empleado->user->syncRoles($request->rols);
@@ -105,6 +105,8 @@ class EmpleadoController extends Controller
             'emptelefono' => $request->emptelefono,
             'idDepartamento' => $request->idDepartamento,
          ]);
+
+        return redirect()->route('empleados.index')->with('success', 'Empleado actualizado con éxito');
     }
 
     /**

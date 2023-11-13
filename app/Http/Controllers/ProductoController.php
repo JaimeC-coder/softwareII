@@ -126,7 +126,7 @@ class ProductoController extends Controller
         return view('dashboard.abastecimiento', compact('productos'));
     }
 
-    public function ventas()
+    public function graficaabastecimiento()
     {
         $productosPorCategoria = DB::table('productos')
         ->join('tipo_productos', 'productos.idTipoproducto', '=', 'tipo_productos.idTipoproducto')

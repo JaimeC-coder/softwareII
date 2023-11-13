@@ -24,9 +24,8 @@ class TipoDocumentoController extends Controller
     public function create()
     {
         //
-        $tipoDocumento = new TipoDocumento();
-
-        return view('tipoDocumentos.create', compact('tipoDocumento'));
+       // $tipoDocumento = new TipoDocumento();
+        return redirect()->route('tipodocumentos.index')->with('success', 'Esta accion no es permitidad.');
     }
 
     /**

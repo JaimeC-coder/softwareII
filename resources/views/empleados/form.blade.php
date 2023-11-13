@@ -48,19 +48,19 @@
         @if ($user->usunombre)
         <div class="form-group col-md-6">
             {{ Form::label('usunombre','Nombre de usuario') }}
-            {{ Form::text('usunombre', $user->usunombre, ['class' => 'form-control' . ($errors->has('usunombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Nombre de usuario']) }}
+            {{ Form::text('usunombre', $user->name, ['class' => 'form-control' . ($errors->has('usunombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Nombre de usuario']) }}
             {!! $errors->first('usunombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         @endif
 
             <div class="form-group col-md-6">
                 {{ Form::label('Correo') }}
-                {{ Form::text('usuemail', $user->usuemail, ['class' => 'form-control' . ($errors->has('usuemail') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Correo']) }}
+                {{ Form::text('usuemail', $user->email, ['class' => 'form-control' . ($errors->has('usuemail') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Correo']) }}
                 {!! $errors->first('usuemail', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group col-md-6">
                 {{ Form::label('Contraseña') }}
-                {{ Form::text('usucontra', $user->usucontra, ['class' => 'form-control' . ($errors->has('usucontra') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Contraseña']) }}
+                {{ Form::text('usucontra', "Ingrese nueva contraseña", ['class' => 'form-control' . ($errors->has('usucontra') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese Contraseña']) }}
                 {!! $errors->first('usucontra', '<div class="invalid-feedback">:message</div>') !!}
             </div>
 

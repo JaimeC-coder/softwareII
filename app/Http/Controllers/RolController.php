@@ -22,9 +22,9 @@ class RolController extends Controller
     public function create()
     {
         //
-        $rol = new Role();
+        $role = new Role();
         $permissions = Permission::all();
-        return view('roles.create', compact('rol','permissions'));
+        return view('roles.create', compact('role','permissions'));
     }
 
     /**
@@ -55,7 +55,10 @@ class RolController extends Controller
     public function edit(Role $role)
     {
         //
-        return view('roles.edit', compact('role'));
+        dd($role->permissions);
+        $permissions = Permission::all();
+
+        return view('roles.edit', compact('role','permissions'));
 
     }
 
@@ -65,11 +68,16 @@ class RolController extends Controller
      */
     public function update(Request $request,Role $roles)
     {
-        //
+
         $roles->update([
             'name' => $request->nombre,
         ]);
-        return redirect()->route('roles.index');
+
+
+        //eliminamos todos los roles que tiene ese usuario
+       // dd($request->permissions);
+        $roles->syncPermissions($request->permissions);
+        return redirect()->route('roles.index')->with('success', 'Rol actualizado con éxito');
     }
 
     /**

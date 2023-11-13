@@ -69,10 +69,13 @@ Route::middleware([
     })->name('default')->middleware('auth');
 });
 
+Route::get('pdf/{venta}',[VentaController::class,'pdf'])->name('ventas.pdf');
+Route::get('pdf/{compra}',[CompraController::class,'pdf'])->name('compra.pdf');
+
 Route::prefix('dasboard')->group(function () {
     Route::prefix('abastecimiento')->group(function () {
         Route::get('/', [ProductoController::class, 'dasboard'])->name('dasboard.abastecimiento');
-        Route::get('graficaabastecimiento', [ProductoController::class, 'abastecimiento'])->name('abastecimiento.graficaabastecimiento');
+        Route::get('graficaabastecimiento', [ProductoController::class, 'graficaabastecimiento'])->name('abastecimiento.graficaabastecimiento');
     });
     Route::prefix('ventas')->group(function () {
         Route::get('/', [VentaController::class, 'dasboard'])->name('dasboard.ventas');

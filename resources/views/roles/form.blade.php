@@ -2,7 +2,7 @@
     <div class="box-body">
         <div class="form-group">
             {{ Form::label('name','Nombre') }}
-            {{ Form::text('name', $rol->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'name']) }}
+            {{ Form::text('name', $role->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'name']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
@@ -13,7 +13,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($permissions as $permission)
                             <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" name="permissions[]" value="{{ $permission->id }}" id="permission_{{ $permission->id }}" {{$rol->permissions->contains($permission->id) ? 'checked' : ''}} >
+                                        <input class="form-check-input me-1" type="checkbox" name="permissions[]" value="{{ $permission->id }}" id="permission_{{ $permission->id }}" {{$role->permissions->contains($permission->id) ? 'checked' : ''}} >
                                         <label class="form-check-label stretched-link" for="permission_{{ $permission->id }}">{{ $permission->description }}</label>
                             </li>
                         @endforeach

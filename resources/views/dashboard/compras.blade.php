@@ -11,10 +11,10 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Ventas</a>
+                    <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Compras</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Ventas</a>
+                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Compras</a>
                 </li>
             </ul>
         </div>
@@ -57,35 +57,13 @@
         function generarGrafica(response) {
             var ctx = document.getElementById('myChart');
             var data = {
-                labels: [
-                    'Eating',
-                    'Drinking',
-                    'Sleeping',
-                    'Designing',
-                    'Coding',
-                    'Cycling',
-                    'Running'
-                ],
+                labels: response.labels,
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 90, 81, 56, 55, 40],
-                    fill: true,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    pointBackgroundColor: 'rgb(255, 99, 132)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(255, 99, 132)'
-                }, {
-                    label: 'My Second Dataset',
-                    data: [28, 48, 40, 19, 96, 27, 100],
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgb(54, 162, 235)',
-                    pointBackgroundColor: 'rgb(54, 162, 235)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                    label: response.label,
+                    data: response.data,
+                    fill: response.fill,
+                    borderColor: response.borderColor,
+                    tension: response.tension,
                 }]
             };
             new Chart(ctx, {
@@ -162,41 +140,41 @@
             });
 
             var table = $('#example').DataTable(
-            //     {
-            //     order: [0, 'desc'],
-            //     responsive: true,
-            //     dom: 'lBfrtip',
-            //     buttons: [{
-            //             extend: 'excelHtml5',
-            //             footer: true,
-            //             title: 'Archivo',
-            //             filename: 'Export_File',
-            //             text: '<button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>',
-            //             titleAttr: 'Exportar a Excel',
-            //         },
-            //         {
-            //             extend: 'pdfHtml5',
-            //             footer: true,
-            //             title: 'Archivo PDF',
-            //             filename: 'Export_File_pdf',
-            //             text: '<button class="btn btn-danger"><i class="bi bi-filetype-pdf"></i></button>',
-            //             titleAttr: 'Exportar a PDF',
-            //         },
-            //         {
-            //             extend: 'copyHtml5',
-            //             download: 'open',
-            //             footer: true,
-            //             title: 'Archivo',
-            //             filename: 'Reporte',
-            //             text: '<button class="btn btn-primary"><i class="bi bi-clipboard"></i></button>',
-            //             titleAttr: 'Copiar al portapapeles',
-            //         }
-            //     ],
-            //     "language": {
-            //         "url": "{{ asset('assets/template/extensions/datatables.net-bs5/js/Spanish.json') }}"
-            //     },
-            //     "lengthMenu": [5, 10, 25, 50, "Todos"]
-            // }
+                //     {
+                //     order: [0, 'desc'],
+                //     responsive: true,
+                //     dom: 'lBfrtip',
+                //     buttons: [{
+                //             extend: 'excelHtml5',
+                //             footer: true,
+                //             title: 'Archivo',
+                //             filename: 'Export_File',
+                //             text: '<button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>',
+                //             titleAttr: 'Exportar a Excel',
+                //         },
+                //         {
+                //             extend: 'pdfHtml5',
+                //             footer: true,
+                //             title: 'Archivo PDF',
+                //             filename: 'Export_File_pdf',
+                //             text: '<button class="btn btn-danger"><i class="bi bi-filetype-pdf"></i></button>',
+                //             titleAttr: 'Exportar a PDF',
+                //         },
+                //         {
+                //             extend: 'copyHtml5',
+                //             download: 'open',
+                //             footer: true,
+                //             title: 'Archivo',
+                //             filename: 'Reporte',
+                //             text: '<button class="btn btn-primary"><i class="bi bi-clipboard"></i></button>',
+                //             titleAttr: 'Copiar al portapapeles',
+                //         }
+                //     ],
+                //     "language": {
+                //         "url": "{{ asset('assets/template/extensions/datatables.net-bs5/js/Spanish.json') }}"
+                //     },
+                //     "lengthMenu": [5, 10, 25, 50, "Todos"]
+                // }
             );
 
             // Changes to the inputs will trigger a redraw to update the table

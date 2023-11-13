@@ -7,13 +7,108 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Productos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="d-none" id="graficaVentas">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="d-none row" id="reportesVentas">
+                @include('productos.reportes')
+            </div>
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
+        </div>
+    </div>
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            traerdatos();
+        });
+
+        function traerdatos() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{{ route('abastecimiento.graficaabastecimiento') }}", true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    generarGrafica(response);
+                }
+            };
+
+            xhr.send();
+        }
+
+        function generarGrafica(response) {
+            var ctx = document.getElementById('myChart');
+            var data = {
+                labels: response.labels,
+                datasets: [{
+                    label: response.label,
+                    data: response.data,
+                    fill: response.fill,
+                    borderColor: response.borderColor,
+                    tension: response.tension,
+                }]
+            };
+            new Chart(ctx, {
+                type: 'bar',
+                data: data
+            });
+        }
+    </script>
+
+
+    <script>
+        function cambiarContenido(tabId) {
+
+            document.getElementById('tabGraficaVentas').classList.remove('active');
+            document.getElementById('tabReportesVentas').classList.remove('active');
+
+
+            document.getElementById(tabId).classList.add('active');
+
+
+            var cardBody = document.querySelector('.card-body');
+            if (tabId === 'tabGraficaVentas') {
+
+                document.getElementById('graficaVentas').classList.remove('d-none');
+                document.getElementById('reportesVentas').classList.add('d-none');
+
+            } else if (tabId === 'tabReportesVentas') {
+                document.getElementById('graficaVentas').classList.add('d-none');
+                document.getElementById('reportesVentas').classList.remove('d-none');
+            }
+        }
+
+
+        document.getElementById('tabGraficaVentas').addEventListener('click', function() {
+            cambiarContenido('tabGraficaVentas');
+        });
+
+        document.getElementById('tabReportesVentas').addEventListener('click', function() {
+            cambiarContenido('tabReportesVentas');
+        });
+
+        // Llamar a la función inicialmente para mostrar la pestaña activa
+        cambiarContenido('tabGraficaVentas');
+    </script>
+
+    <script>
+
+    </script>
 @stop
