@@ -91,12 +91,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($detalle as $item)
+                    @foreach ($compratotal as $item)
                         <tr>
                             <td>{{ $item->Producto->pronombre }}</td>
-                            <td>{{ $item->dcomcantidad }}{{ $item->Producto->Unidadmedida->umednombre }} </td>
+                            <td>{{ $item->dcomcantidad }}  {{ $item->Producto->Unidadmedida->umednombre }} </td>
                             <td> S/. {{ $item->dcomunitario }}</td>
-                            <td> S/. {{ $item->propreciocompra * $item->dcomunitario }}</td>
+                            <td> S/. {{ $item->propreciocompra * $item->Producto->propreciocompra }}</td>
                         </tr>
                     @endforeach
 

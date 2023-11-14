@@ -69,8 +69,9 @@ Route::middleware([
     })->name('default')->middleware('auth');
 });
 
-Route::get('pdf/{venta}',[VentaController::class,'pdf'])->name('ventas.pdf');
-Route::get('pdf/{compra}',[CompraController::class,'pdf'])->name('compra.pdf');
+Route::get('ventas/pdf/{venta}',[VentaController::class,'pdf'])->name('ventas.pdf');
+
+    Route::get('compras/pdf/{compra}',[CompraController::class,'pdf'])->name('compras.pdf');
 
 Route::prefix('dasboard')->group(function () {
     Route::prefix('abastecimiento')->group(function () {

@@ -389,16 +389,16 @@ return [
             'route'  => 'dasboard.compras'
         ],
 
-        [
-            'text'    => 'Solicitudes Aprobadas',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Listar Productos',
-                    'route' => 'default',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Solicitudes Aprobadas',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Listar Productos',
+        //             'route' => 'default',
+        //         ],
+        //     ],
+        // ],
 
         [
             'text'    => 'Proveedor',
@@ -474,7 +474,8 @@ return [
         //     ],
         // ],
         [
-            'text'    => 'Metodos de pago',
+            'text'    => 'Tipos de pago',
+
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
@@ -488,7 +489,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Tipos de pago',
+            'text'    => 'Metodos de pago',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [

@@ -11,6 +11,7 @@ use App\Models\TipoPago;
 use Illuminate\Support\Facades\DB;
 use App\Models\TipoDocumento;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CompraController extends Controller
 {
@@ -122,6 +123,15 @@ class CompraController extends Controller
     {
         //
     }
+
+    public function pdf(Compra $compra)
+    {
+        $compratotal = CompraDetalle::Where('idOrdencompra', $compra->idOrdencompra)->get();
+        $pdf = PDF::loadView('compras.pdf', compact('compra', 'compratotal'));
+        return $pdf->stream('compra.pdf');
+    }
+
+
     public function dasboard()
     {
         $compra = Compra::all();

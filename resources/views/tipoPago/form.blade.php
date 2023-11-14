@@ -2,7 +2,7 @@
     <div class="box-body">
         <div class="form-group">
             {{ Form::label('tpagotipo','Tipo de Pago') }}
-            {{ Form::text('tpagotipo', $tipoPago->tpagotipo, ['class' => 'form-control' . ($errors->has('tpagotipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Comprobante']) }}
+            {{ Form::text('tpagotipo', $tipoPago->tpagotipo, ['class' => 'form-control' . ($errors->has('tpagotipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de pago']) }}
             {!! $errors->first('tpagotipo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

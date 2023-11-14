@@ -24,7 +24,7 @@
             @foreach ($empleados as $empleado)
                 <tr>
                     <td>{{ $empleado->idEmpleado }}</td>
-                    <td>{{ $empleado->empnombres }} {{ $empleado->empapellidop }} {{ $empleado->empapellidop }}</td>
+                    <td>{{ $empleado->empnombres }} {{ $empleado->empapellidop }} {{ $empleado->empapellidom }}</td>
                     <td>{{ $empleado->user->email }}</td>
                     <td>
                         @foreach ($empleado->user->roles as $rol)

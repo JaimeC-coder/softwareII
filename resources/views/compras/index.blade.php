@@ -69,7 +69,10 @@
                                             <td>
                                                 <form action="{{ route('compras.destroy', $item) }}" method="POST">
                                                     {{-- @can('ventas.show') --}}
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('compras.show', $item) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('compras.show', $item) }}"><i class="fa fa-fw fa-eye"></i></a>
+
+                                                    <a class="btn btn-sm btn-danger" href="{{ route('compras.pdf', $item) }}"><i class="fa fa-fw fa-edit"></i> </a>
+                                                    {{-- @endcan --}}
                                                     {{-- @endcan
                                                     @can('ventas.edit') --}}
                                                     {{-- <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a> --}}
