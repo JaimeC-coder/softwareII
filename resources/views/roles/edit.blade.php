@@ -10,29 +10,30 @@
 
 @section('content')
 
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-12">
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
 
-            @includeif('partials.errors')
+                @includeif('partials.errors')
 
-            <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">{{ __('Create') }} Role</span>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('roles.update' ,$role) }}"  role="form" enctype="multipart/form-data">
-{{ method_field('PATCH') }}
-                        @csrf
+                <div class="card card-default">
+                    <div class="card-header">
+                        <span class="card-title">{{ __('Create') }} Role</span>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('roles.update', $role) }}" role="form"
+                            enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
+                            @csrf
 
-                        @include('roles.form')
+                            @include('roles.form')
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
@@ -46,10 +47,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        console.log('Hi!');
+    </script>
 @stop
-
-
-
-
-

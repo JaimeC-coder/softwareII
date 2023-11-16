@@ -21,7 +21,7 @@
             <canvas id="myChart"></canvas>
         </div>
         <div class="d-none row" id="reportesVentas">
-            @include('capacitaciones.reportes')
+            @include('documentos.reportes')
         </div>
 
 

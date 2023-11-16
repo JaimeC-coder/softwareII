@@ -42,7 +42,7 @@ Route::middleware([
     });
 
     Route::resource('empleados', EmpleadoController::class)->names('empleados')->middleware('auth');
-    Route::resource('roles', RolController::class)->names('roles')->middleware('auth');
+    Route::resource('roles', RolController::class)->parameters(['roles' => 'role'])->names('roles')->middleware('auth');
     Route::resource('permisos', PermissionsionController::class)->names('permisos')->middleware('auth');
     Route::resource('departamentos', DepartamentoController::class)->names('departamentos')->middleware('auth');
     Route::resource('tipoproductos', TipoProductoController::class)->names('tipoproductos')->middleware('auth');

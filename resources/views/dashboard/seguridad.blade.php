@@ -11,10 +11,11 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Compras</a>
+                    <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Seguridad
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Compras</a>
+                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Seguridad</a>
                 </li>
             </ul>
         </div>
@@ -23,7 +24,7 @@
                 <canvas id="myChart"></canvas>
             </div>
             <div class="d-none row" id="reportesVentas">
-                @include('compras.reportes')
+                @include('capacitaciones.reportes')
             </div>
 
 
@@ -41,12 +42,13 @@
 
         function traerdatos() {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "{{ route('compras.graficacompras') }}", true);
+            xhr.open("GET", "{{ route('seguridad.graficaseguridad') }}", true);
 
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     generarGrafica(response);
+                    console.log(response);
                 }
             };
 
@@ -58,13 +60,7 @@
             var ctx = document.getElementById('myChart');
             var data = {
                 labels: response.labels,
-                datasets: [{
-                    label: response.label,
-                    data: response.data,
-                    fill: response.fill,
-                    borderColor: response.borderColor,
-                    tension: response.tension,
-                }]
+                datasets: response.datasets
             };
             new Chart(ctx, {
                 type: 'bar',

@@ -55,7 +55,7 @@ class RolController extends Controller
     public function edit(Role $role)
     {
         //
-        dd($role->permissions);
+
         $permissions = Permission::all();
 
         return view('roles.edit', compact('role','permissions'));
@@ -66,17 +66,13 @@ class RolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Role $roles)
+    public function update(Request $request, Role $role)
     {
-
-        $roles->update([
-            'name' => $request->nombre,
+        $role->update([
+            'name' => $request->name,
         ]);
-
-
-        //eliminamos todos los roles que tiene ese usuario
-       // dd($request->permissions);
-        $roles->syncPermissions($request->permissions);
+        
+        $role->permissions()->sync($request->permissions);
         return redirect()->route('roles.index')->with('success', 'Rol actualizado con éxito');
     }
 
