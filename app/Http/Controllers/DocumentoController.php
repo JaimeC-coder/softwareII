@@ -191,7 +191,8 @@ class DocumentoController extends Controller
             ->get();
 
 
-        $respuesta = [
+
+            $respuesta = [
             'labels' => $mesesventas->pluck('mes'),
             'dataset' => [
                 [

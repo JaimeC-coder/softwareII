@@ -77,6 +77,7 @@ Route::prefix('dasboard')->group(function () {
     Route::prefix('abastecimiento')->group(function () {
         Route::get('/', [ProductoController::class, 'dasboard'])->name('dasboard.abastecimiento');
         Route::get('graficaabastecimiento', [ProductoController::class, 'graficaabastecimiento'])->name('abastecimiento.graficaabastecimiento');
+        Route::get('graficaabastecimiento1', [ProductoController::class, 'graficaabastecimientocantidadminnormal'])->name('abastecimiento.graficaabastecimiento1');
     });
     Route::prefix('ventas')->group(function () {
         Route::get('/', [VentaController::class, 'dasboard'])->name('dasboard.ventas');

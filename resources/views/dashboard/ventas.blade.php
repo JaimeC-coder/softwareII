@@ -140,7 +140,41 @@
                 return false;
             });
 
-            var table = $('#example').DataTable({});
+            var table = $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+
+                footerCallback: function(row, data, start, end, display) {
+                    let api = this.api();
+                    let intVal = function(i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                            i :
+                            0;
+                    };
+
+                    total = api
+                        .column(9)
+                        .data()
+                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+                    pageTotal = api
+                        .column(4, {
+                            page: 'current'
+                        })
+                        .data()
+                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+                    api.column(9).footer().innerHTML =
+                        'S/.' + parseFloat(total).toFixed(2);
+
+                }
+            });
+
+
 
             // Changes to the inputs will trigger a redraw to update the table
             minEl.on('input', function() {

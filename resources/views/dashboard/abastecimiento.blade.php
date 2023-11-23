@@ -13,18 +13,20 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#" id="tabGraficaVentas">Grafica de Productos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="tabReportesVentas">Reportes de Productos</a>
-                </li>
+
             </ul>
         </div>
         <div class="card-body">
-            <div class="d-none" id="graficaVentas">
-                <canvas id="myChart"></canvas>
+            <div class="row" id="graficaVentas">
+                <div class="col-12">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="col-12">
+                    <canvas id="myChart12"></canvas>
+                </div>
+
             </div>
-            <div class="d-none row" id="reportesVentas">
-                @include('productos.reportes')
-            </div>
+
 
 
         </div>
@@ -37,6 +39,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             traerdatos();
+            traerdatos1();
         });
 
         function traerdatos() {
@@ -47,6 +50,21 @@
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     generarGrafica(response);
+
+                }
+            };
+
+            xhr.send();
+        }
+        function traerdatos1() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{{ route('abastecimiento.graficaabastecimiento1') }}", true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                    generarGrafica1(response);
                 }
             };
 
@@ -70,43 +88,21 @@
                 data: data
             });
         }
-    </script>
-
-
-    <script>
-        function cambiarContenido(tabId) {
-
-            document.getElementById('tabGraficaVentas').classList.remove('active');
-            document.getElementById('tabReportesVentas').classList.remove('active');
-
-
-            document.getElementById(tabId).classList.add('active');
-
-
-            var cardBody = document.querySelector('.card-body');
-            if (tabId === 'tabGraficaVentas') {
-
-                document.getElementById('graficaVentas').classList.remove('d-none');
-                document.getElementById('reportesVentas').classList.add('d-none');
-
-            } else if (tabId === 'tabReportesVentas') {
-                document.getElementById('graficaVentas').classList.add('d-none');
-                document.getElementById('reportesVentas').classList.remove('d-none');
-            }
+        function generarGrafica1(response) {
+            var ctx = document.getElementById('myChart12');
+            var data = {
+                labels: response.labels,
+                datasets:response.datasets
+            };
+            new Chart(ctx, {
+                type: 'bar',
+                data: data
+            });
         }
-
-
-        document.getElementById('tabGraficaVentas').addEventListener('click', function() {
-            cambiarContenido('tabGraficaVentas');
-        });
-
-        document.getElementById('tabReportesVentas').addEventListener('click', function() {
-            cambiarContenido('tabReportesVentas');
-        });
-
-        // Llamar a la función inicialmente para mostrar la pestaña activa
-        cambiarContenido('tabGraficaVentas');
     </script>
+
+
+
 
     <script>
 

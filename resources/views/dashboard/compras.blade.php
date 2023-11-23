@@ -95,17 +95,12 @@
                 document.getElementById('reportesVentas').classList.remove('d-none');
             }
         }
-
-
         document.getElementById('tabGraficaVentas').addEventListener('click', function() {
             cambiarContenido('tabGraficaVentas');
         });
-
         document.getElementById('tabReportesVentas').addEventListener('click', function() {
             cambiarContenido('tabReportesVentas');
         });
-
-        // Llamar a la función inicialmente para mostrar la pestaña activa
         cambiarContenido('tabGraficaVentas');
     </script>
 
@@ -139,43 +134,41 @@
                 return false;
             });
 
-            var table = $('#example').DataTable(
-                //     {
-                //     order: [0, 'desc'],
-                //     responsive: true,
-                //     dom: 'lBfrtip',
-                //     buttons: [{
-                //             extend: 'excelHtml5',
-                //             footer: true,
-                //             title: 'Archivo',
-                //             filename: 'Export_File',
-                //             text: '<button class="btn btn-success"><i class="bi bi-file-earmark-excel"></i></button>',
-                //             titleAttr: 'Exportar a Excel',
-                //         },
-                //         {
-                //             extend: 'pdfHtml5',
-                //             footer: true,
-                //             title: 'Archivo PDF',
-                //             filename: 'Export_File_pdf',
-                //             text: '<button class="btn btn-danger"><i class="bi bi-filetype-pdf"></i></button>',
-                //             titleAttr: 'Exportar a PDF',
-                //         },
-                //         {
-                //             extend: 'copyHtml5',
-                //             download: 'open',
-                //             footer: true,
-                //             title: 'Archivo',
-                //             filename: 'Reporte',
-                //             text: '<button class="btn btn-primary"><i class="bi bi-clipboard"></i></button>',
-                //             titleAttr: 'Copiar al portapapeles',
-                //         }
-                //     ],
-                //     "language": {
-                //         "url": "{{ asset('assets/template/extensions/datatables.net-bs5/js/Spanish.json') }}"
-                //     },
-                //     "lengthMenu": [5, 10, 25, 50, "Todos"]
-                // }
-            );
+            var table = $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+
+                footerCallback: function(row, data, start, end, display) {
+                    let api = this.api();
+                    let intVal = function(i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                            i :
+                            0;
+                    };
+
+                    total = api
+                        .column(7)
+                        .data()
+                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+                    pageTotal = api
+                        .column(4, {
+                            page: 'current'
+                        })
+                        .data()
+                        .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+                    api.column(7).footer().innerHTML =
+                        'S/.' + parseFloat(total).toFixed(2);
+
+                }
+            });
+
+
 
             // Changes to the inputs will trigger a redraw to update the table
             initDate.on('input', function() {

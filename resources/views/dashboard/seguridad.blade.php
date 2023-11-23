@@ -122,7 +122,7 @@
             DataTable.ext.search.push(function(settings, data, dataIndex) {
                 var minDate = new Date(initDate.val());
                 var maxDate = new Date(endDate.val());
-                var dateValue = new Date(data[1]); // A // use data for the age column
+                var dateValue = new Date(data[2]); // A // use data for the age column
                 if (
                     isNaN(minDate) && isNaN(maxDate) ||
                     isNaN(minDate) && dateValue <= maxDate ||

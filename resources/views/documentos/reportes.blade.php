@@ -1,7 +1,15 @@
 <div class="card col-12">
     <div class="card-header">
         <div class="d-flex row">
-     
+        </div>
+            <div class="col-3">
+                <h3>Fecha inicio</h3>
+                <input type="date" name="" id="initDate" class="form-control">
+            </div>
+            <div class="col-3">
+                <h3>Fecha Final</h3>
+                <input type="date" name="" id="endDate" class="form-control">
+            </div>
         </div>
     </div>
     <div class="table-responsive">

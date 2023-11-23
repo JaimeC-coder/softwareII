@@ -155,4 +155,41 @@ class ProductoController extends Controller
 
         return response()->json($response);
     }
+    public function graficaabastecimientocantidadminnormal()
+    {
+        $productosPorCategoria = Producto::all();
+
+        $labels = [];
+        $data = [];
+
+        foreach ($productosPorCategoria as $mes) {
+            $labels[] = $mes->categoria;
+            $data[] = $mes->cantidad_productos;
+        }
+
+
+
+        $respuesta = [
+            'labels' => $productosPorCategoria->pluck('pronombre'),
+            'dataset' => [
+                [
+                    'label' => 'Stock actual',
+                    'data' => $productosPorCategoria->pluck('prostock'),
+                    'fill' => false,
+                    'borderColor' => '#4bc0c0',
+                    'tension' => 0.1,
+                ],
+                [
+                    'label' => 'Stock minimo',
+                    'data' => $productosPorCategoria->pluck('prostockminimo'),
+                    'fill' => false,
+                    'borderColor' => '#565656',
+                    'tension' => 0.1,
+                ],
+            ]
+        ];
+
+
+        return response()->json($respuesta);
+    }
 }
