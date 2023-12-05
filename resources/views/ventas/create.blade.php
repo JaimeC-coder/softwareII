@@ -41,11 +41,13 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
+
 @stop
 
 @section('js')
     <script>
+        const MOSTRAR_IMAGENES = '#mostrar_img';
         const SELECTOR_PRODUCTOS = '#productos';
         const SELECTOR_CUANTITY = '#cuantity';
         const SELECTOR_TOTAL = '#venmonto';
@@ -59,6 +61,15 @@
         let i = 1;
         let total = 0;
         let listaProductos = [];
+        $('#idTipopago').change(function() {
+            if ($(this).val() == 7) {
+                $(MOSTRAR_IMAGENES).removeClass('d-none');
+                $('#img').attr('src', '/qr.jpeg');
+
+            } else {
+                $(MOSTRAR_IMAGENES).addClass('d-none');
+            }
+        });
         $('#add').click(agregarProducto);
 
         function agregarProducto(e) {
@@ -102,8 +113,7 @@
                             <i class="fas fa-minus"></i>
                         </button>
                     </td>
-                </tr>`
-                ;
+                </tr>`;
         }
 
         function resetearCampos() {

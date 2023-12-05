@@ -39,7 +39,7 @@ class TipoPagoController extends Controller
             'tpagotipo' => $request->tpagotipo,
 
         ]);
-        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago creado exitosamente');
+        return redirect()->route('tipopagos.index')->with('success','Tipo de pago creado exitosamente');
 
     }
 
@@ -70,7 +70,7 @@ class TipoPagoController extends Controller
         $tipoPago->update([
             'tpagotipo' => $request->tpagotipo,
         ]);
-        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago actualizado exitosamente');
+        return redirect()->route('tipopagos.index')->with('success','Tipo de pago actualizado exitosamente');
     }
 
     /**
@@ -80,6 +80,6 @@ class TipoPagoController extends Controller
     {
         //
         $tipoPago->delete();
-        return redirect()->route('tipoPagos.index')->with('success','Tipo de pago eliminado exitosamente');
+        return redirect()->route('tipopagos.index')->with('success','Tipo de pago eliminado exitosamente');
     }
 }

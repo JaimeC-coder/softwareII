@@ -128,7 +128,8 @@ class CompraController extends Controller
     {
         $compratotal = CompraDetalle::Where('idOrdencompra', $compra->idOrdencompra)->get();
         $pdf = PDF::loadView('compras.pdf', compact('compra', 'compratotal'));
-        return $pdf->stream('compra.pdf');
+        return $pdf->download('compra.pdf');
+        
     }
 
 

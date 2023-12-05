@@ -61,10 +61,16 @@
             {{ Form::select('idTipocomprobante', $comprobante, null, ['class' => 'form-control' . ($errors->has('idTipocomprobante') ? ' is-invalid' : ''), 'placeholder' => 'seleccione tipo de comprobante']) }}
             {!! $errors->first('idTipocomprobante', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('idTipopago', 'Tipo de Pago') }}
             {{ Form::select('idTipopago', $pago, null, ['class' => 'form-control' . ($errors->has('idTipopago') ? ' is-invalid' : ''), 'placeholder' => 'seleccione tipo de pago']) }}
             {!! $errors->first('idTipopago', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group d-none" id="mostrar_img">
+            {{ Form::label( 'Escanee el codigo') }}
+            <br>
+            <img src="" alt="" id="img" width="200px" height="200px">
         </div>
 
         <div class="row ">

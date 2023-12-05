@@ -130,6 +130,8 @@ class VentaController extends Controller
     {
         $detalleventa = VentaDetalle::where('idVenta', $venta->idVenta)->get();
         $pdf = Pdf::loadView('ventas.pdf', compact('venta', 'detalleventa'));
+        //darle tamaño a la hoja
+        
         return $pdf->download('venta.pdf');
     }
 

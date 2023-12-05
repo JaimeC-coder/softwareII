@@ -38,7 +38,7 @@ class TipoComprobanteController extends Controller
             'tcomcomprobante' => $request->tcomcomprobante
         ]);
 
-        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante creado exitosamente.');
+        return redirect()->route('tipocomprobantes.index')->with('success', 'Tipo de comprobante creado exitosamente.');
     }
 
     /**
@@ -70,7 +70,7 @@ class TipoComprobanteController extends Controller
             'tcomcomprobante' => $request->tcomcomprobante,
         ]);
 
-        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante actualizado exitosamente.');
+        return redirect()->route('tipocomprobantes.index')->with('success', 'Tipo de comprobante actualizado exitosamente.');
     }
 
     /**
@@ -80,6 +80,6 @@ class TipoComprobanteController extends Controller
     {
         //
         $tipoComprobante->delete();
-        return redirect()->route('tipoComprobantes.index')->with('success', 'Tipo de comprobante eliminado exitosamente.');
+        return redirect()->route('tipocomprobantes.index')->with('success', 'Tipo de comprobante eliminado exitosamente.');
     }
 }

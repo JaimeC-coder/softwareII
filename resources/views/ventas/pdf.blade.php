@@ -2,127 +2,197 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Venta</title>
+    <meta charset="gb18030">
     <style>
-
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-
+        #ticket {
+            font-family: "Arial Narrow";
+            font-size: 17px;
+            font-style: bold;
         }
 
-        .venta-container {
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .venta-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .venta-datos {
-            margin-bottom: 20px;
-        }
-
-        .venta-datos .dato {
-            margin-bottom: 10px;
-        }
-
-        .venta-productos {
-            margin-bottom: 20px;
-        }
-
-        .venta-productos table {
+        table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 16px;
         }
 
-        .venta-productos th,
-        .venta-productos td {
-            padding: 8px;
-            border: 1px solid #ccc;
+        thead tr th {
+            border-top: 1.5px dashed black;
+            border-bottom: 1.5px dashed black;
         }
 
-        .venta-total {
-            font-weight: bold;
+        .producto {
+            width: 60px;
+            max-width: 75px;
+        }
+
+        .cantidad {
+            width: 100px;
+            word-break: break-all;
+            background: yellow;
+        }
+
+        .precio {
+            word-break: break-all;
+        }
+
+        .centrado {
+            text-align: center;
+            align-content: center;
+        }
+
+        .ticket {
+            width: 9cm;
+            max-width: 9cm;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        .lineas {
+            font-size: 17px;
+        }
+
+        .etiq {
+            width: 100px;
+            display: block;
+            float: left;
+        }
+
+        .etiq2 {
+            width: 40%;
+            display: block;
+            float: left;
+        }
+
+        .etiq3 {
+            width: 90%;
+            display: block;
+            float: left;
+        }
+
+        .etiq4 {
+            width: 100%;
+            display: block;
+            float: left;
+        }
+
+        .puntos {
+            width: 10%;
+            display: block;
+            float: left;
+        }
+
+        .moneda {
+            width: 50%;
+            display: block;
+            float: right;
             text-align: right;
         }
 
-        .venta-observaciones {
-            margin-top: 20px;
+        .montos {
+            width: 100%;
         }
 
-        .conten {
-            display: flex;
-            justify-content: space-between;
+        .oculto {
+            display: none;
+        }
+
+        @media print {
+
+            .oculto-impresion,
+            .oculto-impresion * {
+                display: none !important;
+            }
         }
     </style>
-</head>
 
 <body>
-    <div class="venta-container">
-        <div class="venta-header">
-            <h1>Detalle de Venta</h1>
+
+    <div class="ticket" id="ticket">
+        <div class="center">
+            <h3 style="margin: 0; font-size: 16px; text-align: center">
+                GRIFO PREMEX
+            </h3>
+
+            <!-- <h3 style="margin: 0; font-size: 24px; text-align: center"><b>LED SIGHT</b></h3> -->
+            <br>
+            <h6 style="margin: 0; font-size: 14px; text-align: center">Mariano Melgar #212 - CHEPEN</h6>
+            <h6 style="margin: 0; font-size: 14px; text-align: center">CEL. 9999999999 - RUC : 78952143697778</h6>
+            <br>
+
         </div>
-        <div class="venta-datos">
-            <div class="conten">
-                <div class="dato">
-                    <span class="dato-label">Vendedor:</span>
-                    <span class="dato-valor">{{$venta->Empleado->empnombres}}  {{$venta->Empleado->empapellidop}}</span>
-                </div>
-                <div class="dato">
-                    <span class="dato-label">Fecha:</span>
-                    <span class="dato-valor">{{$venta->venfecha}}- {{$venta->venhora}}</span>
-                </div>
-            </div>
-            <div class="conten">
-                <div class="dato">
-                    <span class="dato-label">Tipo de Comprobante:</span>
-                    <span class="dato-valor">  {{ $venta->tipoComprobante->tcomcomprobante }}</span>
-                </div>
-                <div class="dato">
-                    <span class="dato-label">Tipo de Pago:</span>
-                    <span class="dato-valor">{{ $venta->tipoPago->tpagotipo }}</span>
-                </div>
-            </div>
-        </div>
-        <div class="venta-productos">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($detalleventa as $item)
-                        <tr>
-                            <td>{{ $item->Producto->pronombre }}</td>
-                            <td>{{ $item->dvcantidad }} {{ $item->Producto->Unidadmedida->umednombre }} </td>
-                            <td> S/. {{ $item->dvpreciounitario }}</td>
-                            <td> S/. {{ $item->dvpreciounitario * $item->dvcantidad }}</td>
-                        </tr>
-                    @endforeach
+
+        <div class="lineas">------------------------------------------------------------</div>
+        <span class="etiq">Vendedor</span>:<span>{{ $venta->Empleado->empnombres }}
+            {{ $venta->Empleado->empapellidop }}</span>
+        <br>
+        <br>
+        <span class="etiq">Fecha</span>:<span>{{ $venta->venfecha }}- {{ $venta->venhora }}</span>
+        <br>
+        <br>
+        <span class="etiq">Tipo de Comprobante</span>:<span> {{ $venta->tipoComprobante->tcomcomprobante }}</span>
+        <br>
+        <br><br>
+        <span class="etiq">Tipo de Pago</span>:<span>{{ $venta->tipoPago->tpagotipo }}</span>
+        <br>
+        <br>
+        <br>
 
 
-                </tbody>
-            </table>
-        </div>
-        <div class="venta-total">
-            <div>Total: S/. {{$venta->venmonto}}</div>
-            <div>Impuesto: S/. {{$venta->venimpuesto}}</div>
-            <div>Total Neto: S/. {{$venta->ventotalneto}}</div>
-        </div>
-        <div class="venta-observaciones">
-            <h3>Observaciones:</h3>
-        </div>
-        <p>{{$venta->venobservacion}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>DESCRIPCION.</th>
+                    <th>CANT</th>
+                    <th>P. UNIT</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($detalleventa as $item) { ?>
+                <tr>
+                    <td>{{ $item->Producto->pronombre }}</td>
+                    <td style="text-align:center">{{ $item->dvcantidad }}
+                        {{ $item->Producto->Unidadmedida->umednombre }}</td>
+                    <td style="text-align:center"> {{ $item->dvpreciounitario }}</td>
+                    <td style="text-align:center">{{ $item->dvpreciounitario * $item->dvcantidad }}</td>
+                </tr>
+                <?php    } ?>
+            </tbody>
+        </table>
+        <div class="lineas">------------------------------------------------------------</div>
+
+        <br><span class="etiq2">Total</span>
+        <span class="puntos">: </span>
+        <span class="moneda"> S/{{ $venta->venmonto }}</span>
+        <br>
+        <br>
+        <span class="etiq2">Impuesto</span>
+        <span class="puntos">: </span>
+        <span class="moneda"> S/{{ $venta->venimpuesto }}</span>
+        <br>
+        <br><span class="etiq2">Total Neto</span>
+        <span class="puntos">: </span>
+        <span class="moneda">S/ {{ $venta->ventotalneto }}</span>
+        <br>
+
+        <center>
+            {!!QrCode::size(120)->generate("Hola") !!}
+            <p>Escanéame para volver a la página principal.</p>
+            <br>
+        </center>
+
+
     </div>
+
+
 </body>
 
 </html>
